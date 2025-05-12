@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
+class_name Player
+
 signal hurt()
+
 
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot

@@ -18,16 +18,10 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.has_method("hit"): #or <if "hit" in body:>
-		body.hit()
-	queue_free()
-
-
-func _on_hit_box_body_entered(body):
-	print("entered: ", body)
-	if body.has_method("take_damage"):
+	if body.has_method("take_damage") and body is Player:
 			body.take_damage(damage)
 			queue_free()
+
 
 
 func _on_timer_timeout() -> void:

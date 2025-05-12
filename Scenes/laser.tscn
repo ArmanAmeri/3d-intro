@@ -44,4 +44,5 @@ mesh = SubResource("CylinderMesh_kqc6w")
 transform = Transform3D(0.970701, 0, 0, 0, -4.24307e-08, -0.970701, 0, 0.970701, -4.24307e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_0ajo7")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Utilities/Timer" to="." method="_on_timer_timeout"]
