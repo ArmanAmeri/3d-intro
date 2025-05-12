@@ -9,6 +9,7 @@ height = 1.0
 
 [node name="Bullet" type="RayCast3D"]
 top_level = true
+collision_mask = 15
 script = ExtResource("1_8so0n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

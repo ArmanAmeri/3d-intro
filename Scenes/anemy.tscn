@@ -19,6 +19,8 @@ material = SubResource("StandardMaterial3D_3vg58")
 radius = 1.649
 
 [node name="anemy" type="CharacterBody3D"]
+collision_layer = 8
+collision_mask = 15
 script = ExtResource("1_2sawb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

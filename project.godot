@@ -61,6 +61,19 @@ shoot={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_1="Ground"
+3d_render/layer_2="Walls"
+3d_render/layer_3="Player"
+3d_render/layer_4="Anemys"
+3d_render/layer_5="Projectiles"
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Ground"
+3d_physics/layer_3="Walls"
+3d_physics/layer_4="Anemys"
+3d_physics/layer_5="Bullets"
+
 [rendering]
 
 renderer/rendering_method="mobile"
