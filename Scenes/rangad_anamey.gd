@@ -1,10 +1,15 @@
 extends CharacterBody3D
 
+signal hurt()
+
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 @onready var laser_spawn: Marker3D = $LaserSpawn
 @onready var projectile_node: Node3D = $ProjectileNode
 @onready var timer: Node = $Timers/Timer
+
+var max_hp: int = 100
+var hp: int
 
 var laser_scene = load("res://Scenes/laser.tscn")
 var enemy_direction
@@ -16,6 +21,7 @@ var hurtbox_colliding: bool = false
 var can_shoot = true
 
 func _ready() -> void:
+	hp = max_hp
 	await get_tree().process_frame
 	nav_ready = true
 
@@ -60,3 +66,16 @@ func fire_laser():
 
 func _reload_timeout() -> void:
 	can_shoot = true
+	
+
+func take_damage(amount:int) -> void:
+	print(amount, " anemy damage taken")
+	hp -= amount
+	
+	hurt.emit()
+	
+	if hp <= 0:
+		die()
+
+func die() -> void:
+	self.queue_free()

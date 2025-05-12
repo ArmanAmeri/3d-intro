@@ -4,7 +4,7 @@ extends RayCast3D
 
 @onready var remote_transform: RemoteTransform3D = RemoteTransform3D.new()
 
-var damage: int = 25
+var damage: int = 15
 
 func _physics_process(delta: float) -> void:
 	position += global_basis * Vector3.FORWARD * speed * delta
