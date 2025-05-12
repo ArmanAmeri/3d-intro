@@ -4,7 +4,8 @@ signal hurt()
 
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
-@onready var camera: Camera3D = $TwistPivot/PitchPivot/ThirdPersonCamera
+@onready var thirdp_camera: Camera3D = $TwistPivot/PitchPivot/ThirdPersonCamera
+@onready var firstp_camera: Camera3D = $TwistPivot/PitchPivot/FirstPersonCamera
 
 @onready var body: Node3D = $Body
 
@@ -33,6 +34,9 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	
+	if Input.is_action_just_pressed("toggle camera"):
+		toggle_camera()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -81,6 +85,14 @@ func take_damage(amount:int) -> void:
 
 func die() -> void:
 	self.queue_free()
+
+func toggle_camera():
+	if thirdp_camera.current == true:
+		firstp_camera.make_current()
+		thirdp_camera.clear_current()
+	else:
+		thirdp_camera.make_current()
+		firstp_camera.clear_current()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

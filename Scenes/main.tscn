@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dihy6wuibgplv"]
 
 [ext_resource type="PackedScene" uid="uid://buce3731mh8jo" path="res://Scenes/player.tscn" id="1_al1kw"]
-[ext_resource type="PackedScene" uid="uid://bo4qc0s6sn8hr" path="res://Scenes/rangad_anamey.tscn" id="3_mgvyx"]
+[ext_resource type="PackedScene" uid="uid://du3w2mg154swb" path="res://Scenes/rangad_anamey.tscn" id="3_mgvyx"]
 [ext_resource type="PackedScene" uid="uid://crtl45h55ft3u" path="res://Scenes/laser.tscn" id="4_uoh5u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_psyh5"]
@@ -52,6 +52,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.64375, 3.80163)
 [node name="Walls" type="Node3D" parent="."]
 
 [node name="Wall1" type="CSGBox3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.40507, 2, 0)
 size = Vector3(10, 4, 1)
 material = SubResource("StandardMaterial3D_s8lxt")
+
+[node name="RangadAnamey2" parent="." instance=ExtResource("3_mgvyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98, 2.53801, 4.63336)

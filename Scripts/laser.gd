@@ -24,6 +24,7 @@ func _on_body_entered(body):
 
 
 func _on_hit_box_body_entered(body):
+	print("entered: ", body)
 	if body.has_method("take_damage"):
 			body.take_damage(damage)
 			queue_free()
