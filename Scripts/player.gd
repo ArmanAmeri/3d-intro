@@ -71,7 +71,7 @@ func take_damage(amount:float) -> void:
 	print(amount, " damage taken")
 	hp -= amount
 	
-	emit_signal("hurt")
+	hurt.emit()
 	
 	if hp <= 0:
 		die()

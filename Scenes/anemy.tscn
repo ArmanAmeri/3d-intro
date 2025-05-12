@@ -33,4 +33,7 @@ mesh = SubResource("BoxMesh_8ev0l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 shape = SubResource("SphereShape3D_rrl81")
 
+[node name="Timers" type="Node" parent="."]
+
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://buce3731mh8jo"]
+[gd_scene load_steps=9 format=3 uid="uid://buce3731mh8jo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jihlc"]
 [ext_resource type="Script" path="res://Scripts/playerbody.gd" id="2_vo0h2"]
+[ext_resource type="Script" path="res://Scripts/gun.gd" id="3_lhty6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]
 
@@ -31,8 +32,15 @@ shape = SubResource("CapsuleShape3D_yu7ey")
 
 [node name="PitchPivot" type="Node3D" parent="TwistPivot"]
 
-[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
+[node name="ThirdPersonCamera" type="Camera3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.961459, 0.274949, 0, -0.274949, 0.961459, -0.00217092, 1.63495, 2.65094)
+
+[node name="Gun" type="Node3D" parent="TwistPivot/PitchPivot/ThirdPersonCamera"]
+transform = Transform3D(1, 0, 0, 0, 0.961459, -0.274949, 0, 0.274949, 0.961459, 0.00217092, -0.843064, -2.9983)
+script = ExtResource("3_lhty6")
+
+[node name="Timer" type="Timer" parent="TwistPivot/PitchPivot/ThirdPersonCamera/Gun"]
+one_shot = true
 
 [node name="Body" type="Node3D" parent="."]
 script = ExtResource("2_vo0h2")
