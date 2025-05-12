@@ -18,6 +18,8 @@ albedo_color = Color(100, 100, 1, 1)
 material = SubResource("StandardMaterial3D_v6e8k")
 
 [node name="RangadAnamey" type="CharacterBody3D"]
+collision_layer = 8
+collision_mask = 15
 script = ExtResource("1_mla7o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

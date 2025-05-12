@@ -24,6 +24,8 @@ radius = 0.0399172
 
 [node name="Laser" type="Area3D"]
 top_level = true
+collision_layer = 16
+collision_mask = 15
 script = ExtResource("1_7rqo5")
 
 [node name="Outside" type="MeshInstance3D" parent="."]
