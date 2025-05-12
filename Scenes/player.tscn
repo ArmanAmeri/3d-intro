@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://buce3731mh8jo"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_jihlc"]
+[ext_resource type="Script" path="res://Scripts/playerbody.gd" id="2_vo0h2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eqslb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0h3go"]
+material = SubResource("StandardMaterial3D_eqslb")
+radius = 0.345
+height = 0.45
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utxeq"]
+albedo_color = Color(0.0745098, 0.556863, 1, 1)
+metallic = 1.0
+roughness = 0.23
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pw36s"]
+material = SubResource("StandardMaterial3D_utxeq")
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24638, 0)
+script = ExtResource("1_jihlc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_yu7ey")
+
+[node name="TwistPivot" type="Node3D" parent="."]
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.961459, 0.274949, 0, -0.274949, 0.961459, -0.00217092, 1.63495, 2.65094)
+
+[node name="Body" type="Node3D" parent="."]
+script = ExtResource("2_vo0h2")
+
+[node name="Face" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00851703, 0.547664, -0.312788)
+gi_mode = 2
+mesh = SubResource("SphereMesh_0h3go")
+skeleton = NodePath("../..")
+
+[node name="Body" type="MeshInstance3D" parent="Body"]
+mesh = SubResource("CapsuleMesh_pw36s")
+skeleton = NodePath("../..")

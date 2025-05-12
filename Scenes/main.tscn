@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dihy6wuibgplv"]
+
+[ext_resource type="PackedScene" uid="uid://buce3731mh8jo" path="res://Scenes/player.tscn" id="1_al1kw"]
+[ext_resource type="PackedScene" uid="uid://diiu8sy85tg4f" path="res://Scenes/anemy.tscn" id="2_fnvca"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_mga1x"]
+vertices = PackedVector3Array(-5.16, 6.09, -5.16, -5.16, 6.09, 5.09, 5.09, 6.09, 5.09, 5.09, 6.09, -5.16)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lbw7s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_navyd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2w15n"]
+
+[node name="Main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 8.11157, 0)
+shadow_enabled = true
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_al1kw")]
+
+[node name="anemy" parent="." instance=ExtResource("2_fnvca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31773, 17.0879, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(15.23, 0, 0, 0, -0.02, 0, 0, 0, 12.94, 0, 0, 0)
+navigation_mesh = SubResource("NavigationMesh_mga1x")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+physics_material_override = SubResource("PhysicsMaterial_lbw7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_navyd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+mesh = SubResource("BoxMesh_2w15n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, -0.893628)
+physics_material_override = SubResource("PhysicsMaterial_lbw7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_navyd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/StaticBody3D"]
+mesh = SubResource("BoxMesh_2w15n")
