@@ -4,7 +4,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_360ct"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vg58"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhsh8"]
 albedo_color = Color(0.912271, 4.71681e-06, 6.73831e-07, 1)
 roughness = 0.0
 emission_enabled = true
@@ -12,7 +12,7 @@ emission = Color(1, 0, 0, 1)
 emission_energy_multiplier = 16.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_8ev0l"]
-material = SubResource("StandardMaterial3D_3vg58")
+material = SubResource("StandardMaterial3D_jhsh8")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rrl81"]
 radius = 1.649

@@ -4,7 +4,7 @@ signal hurt()
 
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
-@onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
+@onready var camera: Camera3D = $TwistPivot/PitchPivot/ThirdPersonCamera
 @onready var body: Node3D = $Body
 
 var hp_max: float = 100.0
@@ -15,7 +15,7 @@ var mouse_sensivity: float = 0.001
 var twist_input: float = 0.0 #horizontal
 var pitch_input: float = 0.0 #vertical
 
-const SPEED = 5.0
+const SPEED = 4.0
 const JUMP_VELOCITY = 4.5
 
 func _ready() -> void:

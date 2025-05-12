@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://crtl45h55ft3u"]
+
+[ext_resource type="Script" path="res://Scripts/laser.gd" id="1_7rqo5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkdh7"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.509804)
+emission_enabled = true
+emission = Color(100, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lr1kq"]
+material = SubResource("StandardMaterial3D_rkdh7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcpjw"]
+emission_enabled = true
+emission = Color(100, 100, 100, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kqc6w"]
+material = SubResource("StandardMaterial3D_tcpjw")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0ajo7"]
+height = 1.01533
+radius = 0.0399172
+
+[node name="Laser" type="Area3D"]
+top_level = true
+script = ExtResource("1_7rqo5")
+
+[node name="Outside" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, -2.18557e-08, -0.1, 0, 0.5, -4.37114e-09, 0, 0, 0)
+mesh = SubResource("CylinderMesh_lr1kq")
+
+[node name="Inside" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, -2.09815e-08, -0.05, 0, 0.48, -2.18557e-09, -0.000489905, -0.000764579, 0.00219148)
+mesh = SubResource("CylinderMesh_kqc6w")
+
+[node name="Utilities" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="Utilities"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.970701, 0, 0, 0, -4.24307e-08, -0.970701, 0, 0.970701, -4.24307e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_0ajo7")
+
+[connection signal="timeout" from="Utilities/Timer" to="." method="_on_timer_timeout"]

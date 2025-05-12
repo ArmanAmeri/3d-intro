@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://du3w2mg154swb"]
+
+[ext_resource type="Script" path="res://Scenes/rangad_anamey.gd" id="1_mla7o"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y8svc"]
+height = 1.47963
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cosec"]
+albedo_color = Color(1, 0.466667, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n8qc8"]
+material = SubResource("StandardMaterial3D_cosec")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6e8k"]
+albedo_color = Color(100, 100, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_musy0"]
+material = SubResource("StandardMaterial3D_v6e8k")
+
+[node name="RangadAnamey" type="CharacterBody3D"]
+script = ExtResource("1_mla7o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.834141, 0)
+shape = SubResource("CylinderShape3D_y8svc")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="Timers"]
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 1, 0, 0.834141, 0)
+mesh = SubResource("CylinderMesh_n8qc8")
+skeleton = NodePath("../..")
+
+[node name="Eye" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129484, 1.07685, -0.127601)
+mesh = SubResource("SphereMesh_musy0")
+skeleton = NodePath("../..")
+
+[node name="LaserSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.742836, -0.477797)
+
+[node name="ProjectileNode" type="Node3D" parent="."]
+
+[connection signal="timeout" from="Timers/Timer" to="." method="_reload_timeout"]
