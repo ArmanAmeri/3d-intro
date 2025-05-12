@@ -4,11 +4,12 @@ signal hurt()
 
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
-@onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
+@onready var camera: Camera3D = $TwistPivot/PitchPivot/ThirdPersonCamera
+
 @onready var body: Node3D = $Body
 
-var hp_max: float = 100.0
-var hp: float
+var hp_max: int = 100
+var hp: int
 
 var face_rotation
 var mouse_sensivity: float = 0.001
@@ -55,6 +56,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
+	if Input.is_action_just_pressed("shoot"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
@@ -67,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	pitch_input = 0.0
 	
 
-func take_damage(amount:float) -> void:
+func take_damage(amount:int) -> void:
 	print(amount, " damage taken")
 	hp -= amount
 	
