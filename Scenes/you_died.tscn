@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpk84ckjx25no"]
+
+[ext_resource type="Script" path="res://Scripts/you_died.gd" id="1_q4b1l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g51nt"]
+font_size = 64
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_g1axv"]
+
+[node name="You Died" type="CanvasLayer"]
+script = ExtResource("1_q4b1l")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.666667, 0.666667, 0.666667, 0.45098)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -44.0
+offset_right = 138.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Died"
+label_settings = SubResource("LabelSettings_g51nt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 110.0
+offset_right = 50.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 0)
+theme = SubResource("Theme_g1axv")
+text = "Restart"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

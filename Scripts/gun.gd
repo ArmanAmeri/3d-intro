@@ -7,8 +7,8 @@ const BULLET = preload("res://Scenes/bullet.tscn")
 
 func _physics_process(_delta: float) -> void:
 	if timer.is_stopped():
-		if Input.is_action_just_pressed("shoot"):
-			timer.start(0.1)
+		if Input.is_action_pressed("shoot"):
+			timer.start(0.4)
 			var projectile = BULLET.instantiate()
 			add_child(projectile)
 			projectile.global_transform = global_transform

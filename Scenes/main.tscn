@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dihy6wuibgplv"]
+[gd_scene load_steps=10 format=3 uid="uid://dihy6wuibgplv"]
 
 [ext_resource type="PackedScene" uid="uid://buce3731mh8jo" path="res://Scenes/player.tscn" id="1_al1kw"]
 [ext_resource type="PackedScene" uid="uid://diiu8sy85tg4f" path="res://Scenes/anemy.tscn" id="3_45jyr"]
@@ -24,9 +24,6 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8lxt"]
 albedo_color = Color(0.423047, 0.714985, 1.92523e-07, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qebwi"]
-size = Vector3(1, 1, 9.37329)
 
 [node name="Main" type="Node3D"]
 
@@ -167,9 +164,5 @@ material = SubResource("StandardMaterial3D_s8lxt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.14508, 1.30071, 0)
 
 [node name="Spawner" parent="." instance=ExtResource("4_qkdoh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.525, 7.64634, 0)
-scene_to_spawn = ExtResource("3_mgvyx")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.234985)
-shape = SubResource("BoxShape3D_qebwi")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1, 0)
+spawn_scene = ExtResource("3_mgvyx")

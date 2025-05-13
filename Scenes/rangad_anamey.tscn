@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo4qc0s6sn8hr"]
+[gd_scene load_steps=8 format=3 uid="uid://bo4qc0s6sn8hr"]
 
 [ext_resource type="Script" path="res://Scenes/rangad_anamey.gd" id="1_mla7o"]
+[ext_resource type="Script" path="res://Scripts/rangadbody.gd" id="2_dashm"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_y8svc"]
 height = 1.47963
@@ -33,8 +34,9 @@ shape = SubResource("CylinderShape3D_y8svc")
 [node name="Timer" type="Timer" parent="Timers"]
 
 [node name="Body" type="Node3D" parent="."]
+script = ExtResource("2_dashm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+[node name="Body" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 1, 0, 0.834141, 0)
 mesh = SubResource("CylinderMesh_n8qc8")
 skeleton = NodePath("../..")

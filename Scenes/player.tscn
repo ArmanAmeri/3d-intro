@@ -46,7 +46,6 @@ one_shot = true
 
 [node name="ThirdPersonCamera" type="Camera3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.961459, 0.274949, 0, -0.274949, 0.961459, -0.00217092, 1.63495, 2.65094)
-current = true
 
 [node name="Body" type="Node3D" parent="."]
 script = ExtResource("2_vo0h2")
