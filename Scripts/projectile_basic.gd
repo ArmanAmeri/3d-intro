@@ -1,9 +1,8 @@
 extends RayCast3D
 
-@export var speed : float = 50.0
-
 @onready var remote_transform: RemoteTransform3D = RemoteTransform3D.new()
 
+var speed : float = 150.0
 var damage: int = 20
 
 func _physics_process(delta: float) -> void:

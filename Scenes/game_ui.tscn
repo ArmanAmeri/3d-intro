@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://df3mnx84gmn82"]
+[gd_scene load_steps=7 format=3 uid="uid://oi8sct5g8fi5"]
 
 [ext_resource type="Script" path="res://Scripts/game_ui.gd" id="1_syeqx"]
 [ext_resource type="Texture2D" uid="uid://codd6mtrjkk5p" path="res://Assets/Crosshair.png" id="2_c4x62"]
@@ -65,6 +65,7 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 process_mode = 4
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

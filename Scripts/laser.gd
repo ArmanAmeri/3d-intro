@@ -11,7 +11,7 @@ var direction: Vector3 = Vector3.FORWARD
 
 func _ready():
 	direction = Vector3.FORWARD
-	timer.start(10)
+	timer.start()
 
 func _process(delta):
 	position += global_basis * Vector3.FORWARD * speed * delta

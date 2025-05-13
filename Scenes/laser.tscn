@@ -39,6 +39,7 @@ mesh = SubResource("CylinderMesh_kqc6w")
 [node name="Utilities" type="Node" parent="."]
 
 [node name="Timer" type="Timer" parent="Utilities"]
+wait_time = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.970701, 0, 0, 0, -4.24307e-08, -0.970701, 0, 0.970701, -4.24307e-08, 0, 0, 0)
