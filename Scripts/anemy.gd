@@ -52,8 +52,10 @@ func _on_hurt_box_body_exited(_body: Node3D) -> void:
 
 
 func _on_hitbox_hp_change(hp: int) -> void:
-		if hp <= 0:
-			die()
+	print("took damage")
+	hurt.emit()	
+	if hp <= 0:
+		die()
 
 func die() -> void:
 	self.queue_free()

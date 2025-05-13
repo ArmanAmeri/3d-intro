@@ -8,6 +8,6 @@ func _ready() -> void:
 	progress_bar.max_value = player.hp_max
 	hp_amount_label.text = str(player.hp)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	progress_bar.value = player.hp
 	hp_amount_label.text = str(player.hp)

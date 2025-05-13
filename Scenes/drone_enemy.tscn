@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://2ynnh8kitlbt"]
+[gd_scene load_steps=12 format=3 uid="uid://b10gbr3kiakqt"]
 
 [ext_resource type="Script" path="res://Scripts/rangadbody.gd" id="1_8epu3"]
 [ext_resource type="Script" path="res://Scripts/drone_enemy.gd" id="1_gnd67"]
+[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="3_7an8s"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5glhh"]
-radius = 0.639806
+radius = 0.442591
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ufv7x"]
 albedo_color = Color(0, 0.0959999, 0.36, 1)
@@ -29,13 +30,16 @@ emission = Color(1, 0, 0, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_ails1"]
 material = SubResource("StandardMaterial3D_v6e8k")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_e50u2"]
+radius = 0.598522
+
 [node name="DroneEnemy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 8
-collision_mask = 7
+collision_mask = 15
 script = ExtResource("1_gnd67")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="feet" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.834141, 0)
 shape = SubResource("SphereShape3D_5glhh")
 
@@ -67,4 +71,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.742836, -0.477797)
 
 [node name="ProjectileNode" type="Node3D" parent="."]
 
+[node name="Hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.892696, 0)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("3_7an8s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0603089, 0)
+shape = SubResource("SphereShape3D_e50u2")
+
 [connection signal="timeout" from="Timers/Timer" to="." method="_reload_timeout"]
+[connection signal="hp_change" from="Hitbox" to="." method="_on_hitbox_hp_change"]

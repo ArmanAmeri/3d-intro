@@ -1,6 +1,5 @@
 extends Node3D
 
-@onready var face: MeshInstance3D = $Eye
 @onready var body: MeshInstance3D = $Body
 @onready var original_material: StandardMaterial3D
 

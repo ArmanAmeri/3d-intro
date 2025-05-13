@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8ck6e2uinqae"]
+[gd_scene load_steps=3 format=3 uid="uid://dah10fs4pegkv"]
 
 [ext_resource type="Script" path="res://Scripts/projectile_basic.gd" id="1_8so0n"]
 
@@ -10,6 +10,7 @@ height = 1.0
 [node name="Bullet" type="RayCast3D"]
 top_level = true
 collision_mask = 15
+collide_with_areas = true
 script = ExtResource("1_8so0n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

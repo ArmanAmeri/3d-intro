@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://dihy6wuibgplv"]
 
 [ext_resource type="PackedScene" uid="uid://buce3731mh8jo" path="res://Scenes/player.tscn" id="1_al1kw"]
-[ext_resource type="PackedScene" uid="uid://df3mnx84gmn82" path="res://Scenes/game_ui.tscn" id="3_be6b2"]
-[ext_resource type="PackedScene" uid="uid://2ynnh8kitlbt" path="res://Scenes/drone_enemy.tscn" id="5_ckklr"]
+[ext_resource type="PackedScene" path="res://Scenes/game_ui.tscn" id="3_be6b2"]
+[ext_resource type="PackedScene" uid="uid://b10gbr3kiakqt" path="res://Scenes/drone_enemy.tscn" id="5_ckklr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_psyh5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -55,27 +55,6 @@ size = Vector3(14.8906, 1, 15.0527)
 
 [node name="stair" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.52883, 3.23531, 5.44723)
-use_collision = true
-collision_layer = 2
-collision_mask = 0
-size = Vector3(2, 1, 4)
-
-[node name="stair2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.54369, 2.33908, 5.44723)
-use_collision = true
-collision_layer = 2
-collision_mask = 0
-size = Vector3(2, 1, 4)
-
-[node name="stair3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5472, 1.36703, 5.44723)
-use_collision = true
-collision_layer = 2
-collision_mask = 0
-size = Vector3(2, 1, 4)
-
-[node name="stair4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5487, 0.49908, 5.44723)
 use_collision = true
 collision_layer = 2
 collision_mask = 0

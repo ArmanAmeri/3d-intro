@@ -9,7 +9,6 @@ signal hurt()
 @onready var timer: Node = $Timers/Timer
 
 var max_hp: int = 100
-var hp: int
 
 var laser_scene = load("res://Scenes/laser.tscn")
 var enemy_direction
@@ -21,7 +20,6 @@ var hurtbox_colliding: bool = false
 var can_shoot = true
 
 func _ready() -> void:
-	hp = max_hp
 	await get_tree().process_frame
 	nav_ready = true
 
@@ -68,12 +66,9 @@ func _reload_timeout() -> void:
 	can_shoot = true
 	
 
-func take_damage(amount:int) -> void:
-	print(amount, " anemy damage taken")
-	hp -= amount
-	
-	hurt.emit()
-	
+func _on_hitbox_hp_change(hp: int) -> void:
+	print("took damage")
+	hurt.emit()	
 	if hp <= 0:
 		die()
 

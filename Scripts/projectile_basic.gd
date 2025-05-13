@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 		
 		if collider.has_method("take_damage"):
 			collider.take_damage(damage)
+			print("den kjører")
 			
 		set_physics_process(false)
 		collider.add_child(remote_transform)
