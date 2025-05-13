@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://diiu8sy85tg4f"]
+[gd_scene load_steps=9 format=3 uid="uid://diiu8sy85tg4f"]
 
 [ext_resource type="Script" path="res://Scripts/anemy.gd" id="1_2sawb"]
 [ext_resource type="Script" path="res://Scripts/enemybody.gd" id="2_u5hqk"]
+[ext_resource type="Script" path="res://Scripts/hitbox.gd" id="3_ipg4m"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_360ct"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_44lkv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vg58"]
 albedo_color = Color(0, 1, 1, 1)
@@ -18,13 +19,15 @@ material = SubResource("StandardMaterial3D_3vg58")
 [sub_resource type="SphereShape3D" id="SphereShape3D_rrl81"]
 radius = 1.649
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1kc4v"]
+
 [node name="anemy" type="CharacterBody3D"]
 collision_layer = 8
 collision_mask = 15
 script = ExtResource("1_2sawb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_360ct")
+shape = SubResource("SphereShape3D_44lkv")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_8ev0l")
@@ -39,5 +42,12 @@ shape = SubResource("SphereShape3D_rrl81")
 
 [node name="Timers" type="Node" parent="."]
 
+[node name="Hitbox" type="Area3D" parent="."]
+script = ExtResource("3_ipg4m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("BoxShape3D_1kc4v")
+
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]
+[connection signal="hp_change" from="Hitbox" to="." method="_on_hitbox_hp_change"]

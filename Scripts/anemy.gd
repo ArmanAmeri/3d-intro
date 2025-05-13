@@ -6,7 +6,6 @@ extends CharacterBody3D
 signal hurt()
 
 var max_hp: int = 100
-var hp: int
 
 var damage: int = 25
 var speed: int = 2
@@ -14,8 +13,6 @@ var nav_ready: bool = false
 var hurtbox_colliding: bool = false
 
 func _ready() -> void:
-	hp = max_hp
-	
 	await get_tree().process_frame
 	nav_ready = true
 
@@ -41,17 +38,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func take_damage(amount:int) -> void:
-	print(amount, " anemy damage taken")
-	hp -= amount
-	
-	hurt.emit()
-	
-	if hp <= 0:
-		die()
-
-func die() -> void:
-	self.queue_free()
 
 func _on_hurt_box_body_entered(body: Node3D) -> void:
 	hurtbox_colliding = true
@@ -63,3 +49,11 @@ func _on_hurt_box_body_entered(body: Node3D) -> void:
 
 func _on_hurt_box_body_exited(_body: Node3D) -> void:
 	hurtbox_colliding = false
+
+
+func _on_hitbox_hp_change(hp: int) -> void:
+		if hp <= 0:
+			die()
+
+func die() -> void:
+	self.queue_free()

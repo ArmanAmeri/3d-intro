@@ -29,8 +29,10 @@ func _physics_process(delta: float) -> void:
 	if player:
 		enemy_direction = (player.position - position).normalized()
 		look_at(Vector3(player.position.x, 0, player.position.z))
+		
 		if can_shoot:
 			fire_laser()
+			
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
