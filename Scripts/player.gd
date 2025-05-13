@@ -70,8 +70,8 @@ func _physics_process(delta: float) -> void:
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(
 		pitch_pivot.rotation.x,
-		-0.5,
-		0.5
+		-1,
+		1
 	)
 	twist_input = 0.0
 	pitch_input = 0.0
