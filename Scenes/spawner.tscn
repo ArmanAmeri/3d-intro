@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bequanpoqt731"]
+
+[ext_resource type="Script" path="res://Scripts/spawner.gd" id="1_jysat"]
+
+[node name="Spawner" type="Area3D"]
+script = ExtResource("1_jysat")
