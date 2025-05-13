@@ -37,6 +37,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24638, -7.56765)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.021576, 0)
 navigation_mesh = SubResource("NavigationMesh_ddp6h")
 
 [node name="Ground" type="CSGBox3D" parent="NavigationRegion3D"]
