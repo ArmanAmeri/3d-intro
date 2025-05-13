@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dihy6wuibgplv"]
+[gd_scene load_steps=9 format=3 uid="uid://dihy6wuibgplv"]
 
 [ext_resource type="PackedScene" uid="uid://buce3731mh8jo" path="res://Scenes/player.tscn" id="1_al1kw"]
-[ext_resource type="PackedScene" uid="uid://diiu8sy85tg4f" path="res://Scenes/anemy.tscn" id="3_45jyr"]
-[ext_resource type="PackedScene" uid="uid://bo4qc0s6sn8hr" path="res://Scenes/rangad_anamey.tscn" id="3_mgvyx"]
-[ext_resource type="PackedScene" uid="uid://bequanpoqt731" path="res://Scenes/spawner.tscn" id="4_qkdoh"]
+[ext_resource type="PackedScene" uid="uid://df3mnx84gmn82" path="res://Scenes/game_ui.tscn" id="3_be6b2"]
+[ext_resource type="PackedScene" uid="uid://2ynnh8kitlbt" path="res://Scenes/drone_enemy.tscn" id="5_ckklr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_psyh5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -35,6 +34,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_al1kw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24638, -7.56765)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ddp6h")
@@ -80,9 +80,6 @@ use_collision = true
 collision_layer = 2
 collision_mask = 0
 size = Vector3(2, 1, 4)
-
-[node name="RangadAnamey" parent="." instance=ExtResource("3_mgvyx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73027, 19.1031)
 
 [node name="Walls" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.519858, 0)
@@ -160,9 +157,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8192, 6.94121, 7.51096)
 size = Vector3(3.2666, 4, 1)
 material = SubResource("StandardMaterial3D_s8lxt")
 
-[node name="anemy" parent="." instance=ExtResource("3_45jyr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.14508, 1.30071, 0)
+[node name="DroneEnemy" parent="." instance=ExtResource("5_ckklr")]
+transform = Transform3D(0.99945, 0, -0.0331726, 0, 1, 0, 0.0331726, 0, 0.99945, 0, 1, 11.555)
 
-[node name="Spawner" parent="." instance=ExtResource("4_qkdoh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1, 0)
-spawn_scene = ExtResource("3_mgvyx")
+[node name="GameUI" parent="." instance=ExtResource("3_be6b2")]

@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://2ynnh8kitlbt"]
+
+[ext_resource type="Script" path="res://Scripts/rangadbody.gd" id="1_8epu3"]
+[ext_resource type="Script" path="res://Scripts/drone_enemy.gd" id="1_gnd67"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5glhh"]
+radius = 0.639806
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ufv7x"]
+albedo_color = Color(0, 0.0959999, 0.36, 1)
+metallic = 1.0
+roughness = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_7kglm"]
+material = SubResource("StandardMaterial3D_ufv7x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6owf"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.895)
+
+[sub_resource type="SphereMesh" id="SphereMesh_utoke"]
+material = SubResource("StandardMaterial3D_q6owf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6e8k"]
+albedo_color = Color(100, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ails1"]
+material = SubResource("StandardMaterial3D_v6e8k")
+
+[node name="DroneEnemy" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_gnd67")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.834141, 0)
+shape = SubResource("SphereShape3D_5glhh")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="Timers"]
+
+[node name="Body" type="Node3D" parent="."]
+script = ExtResource("1_8epu3")
+
+[node name="Body" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.834141, 0)
+mesh = SubResource("SphereMesh_7kglm")
+skeleton = NodePath("../..")
+
+[node name="OutsideEye" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.0089026, 0.86879, -0.48156)
+mesh = SubResource("SphereMesh_utoke")
+
+[node name="Eye" type="MeshInstance3D" parent="Body/OutsideEye"]
+transform = Transform3D(0.854701, 0, 0, 0, 0.854701, 0, 0, 0, 0.854701, 0.00402758, -0.00535321, 0.0171269)
+mesh = SubResource("SphereMesh_ails1")
+skeleton = NodePath("../../..")
+
+[node name="LaserSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.742836, -0.477797)
+
+[node name="ProjectileNode" type="Node3D" parent="."]
+
+[connection signal="timeout" from="Timers/Timer" to="." method="_reload_timeout"]
