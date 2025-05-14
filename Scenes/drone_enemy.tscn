@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://2ynnh8kitlbt"]
+[gd_scene load_steps=13 format=3 uid="uid://b10gbr3kiakqt"]
 
 [ext_resource type="Script" path="res://Scripts/rangadbody.gd" id="1_8epu3"]
 [ext_resource type="Script" path="res://Scripts/drone_enemy.gd" id="1_gnd67"]
@@ -38,13 +38,14 @@ radius = 0.598522
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 8
 collision_mask = 15
+motion_mode = 1
 script = ExtResource("1_gnd67")
 
 [node name="feet" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.118563, 0)
 shape = SubResource("SphereShape3D_5glhh")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 100.0
 
 [node name="Body" type="Node3D" parent="."]
 script = ExtResource("1_8epu3")
@@ -81,5 +82,9 @@ script = ExtResource("3_7an8s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.891009, 0)
 shape = SubResource("SphereShape3D_e50u2")
+
+[node name="CheckGround" type="RayCast3D" parent="."]
+target_position = Vector3(0, -10, 0)
+collision_mask = 2
 
 [connection signal="hp_change" from="Hitbox" to="." method="_on_hitbox_hp_change"]
