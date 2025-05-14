@@ -30,7 +30,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if player:
 		enemy_direction = (player.position - position).normalized()
-		look_at(Vector3(player.position.x, player.position.y, player.position.z))
+		look_at(player.position)
 		# if can_shoot:
 		#     fire_laser()
 

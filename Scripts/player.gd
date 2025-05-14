@@ -6,6 +6,8 @@ signal hurt()
 @onready var thirdp_camera: Camera3D = $TwistPivot/PitchPivot/ThirdPersonCamera
 @onready var firstp_camera: Camera3D = $TwistPivot/PitchPivot/FirstPersonCamera
 @onready var body: Node3D = $Body
+@onready var face: MeshInstance3D = $Body/Face
+
 var hp_max: int = 100
 var hp: int
 var face_rotation
@@ -21,6 +23,9 @@ func _ready() -> void:
 	hp = hp_max
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if firstp_camera.current == true:
+		face.visible = false
+	else: face.visible = true
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -105,9 +110,11 @@ func toggle_camera():
 	if thirdp_camera.current == true:
 		firstp_camera.make_current()
 		thirdp_camera.clear_current()
+		face.visible = false
 	else:
 		thirdp_camera.make_current()
 		firstp_camera.clear_current()
+		face.visible = true
 		
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

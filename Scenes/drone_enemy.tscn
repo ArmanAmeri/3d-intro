@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b10gbr3kiakqt"]
+[gd_scene load_steps=13 format=3 uid="uid://2ynnh8kitlbt"]
 
 [ext_resource type="Script" path="res://Scripts/rangadbody.gd" id="1_8epu3"]
 [ext_resource type="Script" path="res://Scripts/drone_enemy.gd" id="1_gnd67"]
