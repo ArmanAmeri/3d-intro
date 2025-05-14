@@ -46,11 +46,6 @@ shape = SubResource("SphereShape3D_5glhh")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="Timers" type="Node" parent="."]
-
-[node name="Timer" type="Timer" parent="Timers"]
-one_shot = true
-
 [node name="Body" type="Node3D" parent="."]
 script = ExtResource("1_8epu3")
 
@@ -77,8 +72,6 @@ script = ExtResource("3_1xato")
 [node name="Timer" type="Timer" parent="LaserSpawn/LazerGun"]
 one_shot = true
 
-[node name="ProjectileNode" type="Node3D" parent="."]
-
 [node name="Hitbox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.892696, 0)
 collision_layer = 8
@@ -89,10 +82,4 @@ script = ExtResource("3_7an8s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.891009, 0)
 shape = SubResource("SphereShape3D_e50u2")
 
-[node name="groundlevel" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.602488, 0)
-collision_mask = 2
-collide_with_areas = true
-
-[connection signal="timeout" from="Timers/Timer" to="." method="_reload_timeout"]
 [connection signal="hp_change" from="Hitbox" to="." method="_on_hitbox_hp_change"]
