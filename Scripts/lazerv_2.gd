@@ -1,7 +1,7 @@
 extends RayCast3D
 
-var speed : float = 20.0
-var damage: int = 20
+var speed : float = 60.0
+var damage: int = 2
 
 func _physics_process(delta: float) -> void:
 	position += global_basis * Vector3.FORWARD * speed * delta

@@ -75,8 +75,6 @@ func take_damage(amount:int) -> void:
 	# If already dead, don't take more damage
 	if is_dead:
 		return
-		
-	print(amount, " damage taken")
 	hp -= amount
 	
 	hurt.emit()
