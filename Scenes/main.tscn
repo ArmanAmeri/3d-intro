@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dihy6wuibgplv"]
+[gd_scene load_steps=10 format=3 uid="uid://dihy6wuibgplv"]
 
 [ext_resource type="PackedScene" uid="uid://buce3731mh8jo" path="res://Scenes/player.tscn" id="1_al1kw"]
 [ext_resource type="PackedScene" uid="uid://df3mnx84gmn82" path="res://Scenes/game_ui.tscn" id="3_be6b2"]
 [ext_resource type="PackedScene" uid="uid://bequanpoqt731" path="res://Scenes/spawner.tscn" id="4_m8c50"]
 [ext_resource type="PackedScene" uid="uid://2ynnh8kitlbt" path="res://Scenes/drone_enemy.tscn" id="5_ckklr"]
-[ext_resource type="PackedScene" uid="uid://dmk4gixgxrcm5" path="res://Scenes/world.tscn" id="5_ibjcn"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ddp6h"]
 vertices = PackedVector3Array(-499.5, 0.5, -499.5, -499.5, 0.5, 499.5, 499.5, 0.5, 499.5, 499.5, 0.5, -499.5)
@@ -150,6 +149,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.5631, -40.0369)
 spawn_scene = ExtResource("5_ckklr")
 spawn_interval = 1.0
 infinite_spawn = true
-
-[node name="World2" parent="." instance=ExtResource("5_ibjcn")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 30.2529)
