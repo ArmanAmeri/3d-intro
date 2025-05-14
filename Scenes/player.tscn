@@ -37,11 +37,11 @@ shape = SubResource("CapsuleShape3D_yu7ey")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.2)
 current = true
 
-[node name="Gun" type="Node3D" parent="TwistPivot/PitchPivot/FirstPersonCamera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+[node name="MachineGun" type="Node3D" parent="TwistPivot/PitchPivot/FirstPersonCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 script = ExtResource("3_lhty6")
 
-[node name="Timer" type="Timer" parent="TwistPivot/PitchPivot/FirstPersonCamera/Gun"]
+[node name="Timer" type="Timer" parent="TwistPivot/PitchPivot/FirstPersonCamera/MachineGun"]
 one_shot = true
 
 [node name="ThirdPersonCamera" type="Camera3D" parent="TwistPivot/PitchPivot"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://2ynnh8kitlbt"]
+[gd_scene load_steps=13 format=3 uid="uid://b10gbr3kiakqt"]
 
 [ext_resource type="Script" path="res://Scripts/rangadbody.gd" id="1_8epu3"]
 [ext_resource type="Script" path="res://Scripts/drone_enemy.gd" id="1_gnd67"]
+[ext_resource type="Script" path="res://Scripts/lazer_gun.gd" id="3_1xato"]
 [ext_resource type="Script" path="res://Scripts/hitbox.gd" id="3_7an8s"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5glhh"]
@@ -40,7 +41,7 @@ collision_mask = 15
 script = ExtResource("1_gnd67")
 
 [node name="feet" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.834141, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.118563, 0)
 shape = SubResource("SphereShape3D_5glhh")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -48,17 +49,18 @@ shape = SubResource("SphereShape3D_5glhh")
 [node name="Timers" type="Node" parent="."]
 
 [node name="Timer" type="Timer" parent="Timers"]
+one_shot = true
 
 [node name="Body" type="Node3D" parent="."]
 script = ExtResource("1_8epu3")
 
 [node name="Body" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.834141, 0)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 mesh = SubResource("SphereMesh_7kglm")
 skeleton = NodePath("../..")
 
 [node name="OutsideEye" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.0089026, 0.86879, -0.48156)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.009, 0, -0.482)
 mesh = SubResource("SphereMesh_utoke")
 
 [node name="Eye" type="MeshInstance3D" parent="Body/OutsideEye"]
@@ -67,7 +69,13 @@ mesh = SubResource("SphereMesh_ails1")
 skeleton = NodePath("../../..")
 
 [node name="LaserSpawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.742836, -0.477797)
+
+[node name="LazerGun" type="Node3D" parent="LaserSpawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.599239)
+script = ExtResource("3_1xato")
+
+[node name="Timer" type="Timer" parent="LaserSpawn/LazerGun"]
+one_shot = true
 
 [node name="ProjectileNode" type="Node3D" parent="."]
 
@@ -78,8 +86,13 @@ collision_mask = 0
 script = ExtResource("3_7an8s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0603089, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.891009, 0)
 shape = SubResource("SphereShape3D_e50u2")
+
+[node name="groundlevel" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.602488, 0)
+collision_mask = 2
+collide_with_areas = true
 
 [connection signal="timeout" from="Timers/Timer" to="." method="_reload_timeout"]
 [connection signal="hp_change" from="Hitbox" to="." method="_on_hitbox_hp_change"]
