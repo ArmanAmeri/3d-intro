@@ -3,7 +3,7 @@
 [ext_resource type="MeshLibrary" uid="uid://fsmx5c2dg0vx" path="res://Assets/WorldTiles.tres" id="1_fewj4"]
 
 [node name="World" type="Node3D"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_fewj4")
