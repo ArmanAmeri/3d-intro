@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://buce3731mh8jo"]
+[gd_scene load_steps=11 format=3 uid="uid://buce3731mh8jo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jihlc"]
+[ext_resource type="Script" path="res://Scripts/first_person_camera.gd" id="2_fypxa"]
 [ext_resource type="Script" path="res://Scripts/playerbody.gd" id="2_vo0h2"]
 [ext_resource type="Script" path="res://Scripts/gun.gd" id="3_lhty6"]
+[ext_resource type="PackedScene" uid="uid://bqnavtcia3xna" path="res://Scenes/continuous_laser.tscn" id="5_53670"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]
 
@@ -36,6 +38,7 @@ shape = SubResource("CapsuleShape3D_yu7ey")
 [node name="FirstPersonCamera" type="Camera3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.2)
 current = true
+script = ExtResource("2_fypxa")
 
 [node name="MachineGun" type="Node3D" parent="TwistPivot/PitchPivot/FirstPersonCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
@@ -59,3 +62,6 @@ skeleton = NodePath("../..")
 [node name="Body" type="MeshInstance3D" parent="Body"]
 mesh = SubResource("CapsuleMesh_pw36s")
 skeleton = NodePath("../..")
+
+[node name="ContinuousLaser" parent="." instance=ExtResource("5_53670")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.0350537, -2.02292)
