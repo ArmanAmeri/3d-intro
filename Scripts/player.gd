@@ -1,12 +1,20 @@
 extends CharacterBody3D
 class_name Player
+
 signal hurt()
+signal clicked_powerful_shoot()
+
+@export var laser_cooldown: float = 4
+
 @onready var twist_pivot: Node3D = $TwistPivot
 @onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
 @onready var thirdp_camera: Camera3D = $TwistPivot/PitchPivot/ThirdPersonCamera
 @onready var firstp_camera: Camera3D = $TwistPivot/PitchPivot/FirstPersonCamera
 @onready var body: Node3D = $Body
 @onready var face: MeshInstance3D = $Body/Face
+@onready var continuous_laser: Node3D = $TwistPivot/PitchPivot/FirstPersonCamera/ContinuousLaser
+@onready var laser_cooldown_timer: Timer = $LaserCooldownTimer
+
 
 var hp_max: int = 100
 var hp: int
@@ -16,6 +24,7 @@ var twist_input: float = 0.0 #horizontal
 var pitch_input: float = 0.0 #vertical
 # Add a flag to track if player is already dead
 var is_dead: bool = false
+var can_shoot_powerful_shot: bool = true
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -60,6 +69,12 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("shoot"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	if Input.is_action_just_pressed("powerful shoot") and can_shoot_powerful_shot:
+		can_shoot_powerful_shot = false
+		clicked_powerful_shoot.emit()
+		continuous_laser.visible = true
+		laser_cooldown_timer.start(6 + continuous_laser.laser_stay_time + laser_cooldown)
 	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
@@ -119,3 +134,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			twist_input = - event.relative.x * mouse_sensivity
 			pitch_input = - event.relative.y * mouse_sensivity
+
+
+func _on_laser_cooldown_timer_timeout() -> void:
+	can_shoot_powerful_shot = true
