@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqnavtcia3xna"]
+[gd_scene load_steps=15 format=3 uid="uid://bqnavtcia3xna"]
 
 [ext_resource type="Script" path="res://Scripts/continuous_laser.gd" id="1_qfoja"]
 
@@ -10,6 +10,8 @@ emission = Color(0, 0.45, 1, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_4ueu4"]
 material = SubResource("StandardMaterial3D_rkdh7")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_865dj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcpjw"]
 emission_enabled = true
@@ -168,11 +170,20 @@ script = ExtResource("1_qfoja")
 [node name="Laser" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-09, 1, 0, -0.1, -4.37114e-08, 0, 0, 0.00914729)
 visible = false
+collision_mask = 16
+collide_with_areas = true
 
 [node name="Outside" type="MeshInstance3D" parent="Laser"]
 transform = Transform3D(0.1, 0, 0, 0, 0.5, 0, 0, 0, 0.1, 0, 0.499247, 2.18228e-08)
 mesh = SubResource("CylinderMesh_4ueu4")
 skeleton = NodePath("")
+
+[node name="Hitbox" type="Area3D" parent="Laser/Outside"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laser/Outside/Hitbox"]
+shape = SubResource("CylinderShape3D_865dj")
 
 [node name="Inside" type="MeshInstance3D" parent="Laser"]
 transform = Transform3D(0.06, 0, 0, 0, 0.48, -3.55271e-15, 0, 2.84217e-14, 0.06, -0.000489905, 0.501438, 0.000764601)
@@ -194,3 +205,6 @@ mesh = SubResource("SphereMesh_n5kdx")
 libraries = {
 "": SubResource("AnimationLibrary_jpbla")
 }
+
+[connection signal="area_entered" from="Laser/Outside/Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Laser/Outside/Hitbox" to="." method="_on_hitbox_area_exited"]
