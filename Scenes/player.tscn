@@ -49,7 +49,6 @@ one_shot = true
 
 [node name="ContinuousLaser" parent="TwistPivot/PitchPivot/FirstPersonCamera" instance=ExtResource("5_53670")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1.25892, -2.0896)
-visible = false
 
 [node name="ThirdPersonCamera" type="Camera3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.961459, 0.274949, 0, -0.274949, 0.961459, -0.00217092, 1.63495, 2.65094)

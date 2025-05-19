@@ -9,17 +9,13 @@ signal laser_fired()
 @onready var timer: Timer = $Timer
 
 
-var can_be_fired: bool = true
-
 func _ready() -> void:
 	player.connect("clicked_powerful_shoot", on_laser_fired)
 
 func on_laser_fired():
-	if can_be_fired:
-		animp.play("fire_laser")
-		timer.start(5 + laser_stay_time)
-		can_be_fired = false
-		
+	animp.play("fire_laser")
+	timer.start(5 + laser_stay_time)
+
 
 func _emit_laser_fired() -> void:
 	laser_fired.emit()
