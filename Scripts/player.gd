@@ -1,8 +1,11 @@
 extends CharacterBody3D
 class_name Player
 
+signal used_special()
+
 @onready var head = $Head
 @onready var camera = $Head/FirstPersonCamera
+@onready var continuous_laser: Node3D = $Head/FirstPersonCamera/ContinuousLaser
 
 var gravity: float = 9.8
 
@@ -10,7 +13,7 @@ var speed
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.8
-const SENSITIVITY = 0.004
+const SENSITIVITY = 0.001
 
 #bob variables
 const BOB_FREQ = 2.4
@@ -30,6 +33,7 @@ var is_dead: bool = false
 
 
 func _ready() -> void:
+	continuous_laser.visible = false
 	hp = hp_max
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -73,6 +77,10 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("shoot"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	if Input.is_action_just_pressed("Special"):
+		used_special.emit()
+		continuous_laser.visible = true
 	
 	# FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)

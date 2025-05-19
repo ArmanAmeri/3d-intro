@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://buce3731mh8jo"]
+[gd_scene load_steps=10 format=3 uid="uid://buce3731mh8jo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jihlc"]
+[ext_resource type="Script" path="res://Scripts/first_person_camera.gd" id="2_fypxa"]
 [ext_resource type="Script" path="res://Scripts/gun.gd" id="3_lhty6"]
+[ext_resource type="PackedScene" uid="uid://cvhekopx3454x" path="res://Scenes/continuous_laser.tscn" id="5_53670"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]
 radius = 0.249022
@@ -35,6 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="FirstPersonCamera" type="Camera3D" parent="Head"]
 current = true
+script = ExtResource("2_fypxa")
 
 [node name="MachineGun" type="Node3D" parent="Head/FirstPersonCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
@@ -43,11 +46,15 @@ script = ExtResource("3_lhty6")
 [node name="Timer" type="Timer" parent="Head/FirstPersonCamera/MachineGun"]
 one_shot = true
 
+[node name="ContinuousLaser" parent="Head/FirstPersonCamera" instance=ExtResource("5_53670")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1.22904, -1.92068)
+
 [node name="DebugCamera" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 0.863572, 0.504226, 0, -0.504226, 0.863572, 0, 1.8298, 3.3043)
 
 [node name="Bodyold" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 
 [node name="Face" type="MeshInstance3D" parent="Bodyold"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00851703, 0.547664, -0.312788)

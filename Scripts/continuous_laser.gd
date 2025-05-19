@@ -11,7 +11,7 @@ signal laser_fired()
 @export var tick_length: float = 0.1
 
 
-@onready var player: Player = $"../../../.."
+@onready var player: Player = $"../../.."
 @onready var animp: AnimationPlayer = $AnimationPlayer
 @onready var laser_stay_timer: Timer = $Utilities/LaserStayTimer
 
@@ -20,10 +20,11 @@ var can_fire: bool = true
 
 
 func _ready() -> void:
-	player.connect("clicked_powerful_shoot", on_laser_fired)
+	player.connect("used_special", on_laser_fired)
 
 func on_laser_fired():
 	if can_fire:
+		can_fire = false
 		animp.play("fire_laser")
 		laser_stay_timer.start(5 + laser_stay_time)
 
@@ -53,4 +54,4 @@ func _on_laser_stay_timer_timeout() -> void:
 
 
 func _on_cooldown_timer_timeout() -> void:
-	pass # Replace with function body.
+	can_fire = true
