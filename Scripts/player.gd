@@ -4,13 +4,13 @@ class_name Player
 @onready var head = $Head
 @onready var camera = $Head/FirstPersonCamera
 
-var gravity: float = 9.8
+var gravity: float = 10
 
 var speed
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.8
-const SENSITIVITY = 0.004
+const SENSITIVITY = 0.001
 
 #bob variables
 const BOB_FREQ = 2.4
@@ -118,10 +118,11 @@ func die() -> void:
 
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if event is InputEventMouseMotion:
+			head.rotate_y(-event.relative.x * SENSITIVITY)
+			camera.rotate_x(-event.relative.y * SENSITIVITY)
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 
 func _headbob(time) -> Vector3:
