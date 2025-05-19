@@ -14,6 +14,8 @@ const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.8
 const SENSITIVITY = 0.001
+const AIR_FRICTION = 2.0
+const GROUND_FRICTION = 6.0
 
 #bob variables
 const BOB_FREQ = 2.4
@@ -61,11 +63,11 @@ func _physics_process(delta):
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * GROUND_FRICTION)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * GROUND_FRICTION)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * AIR_FRICTION)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * AIR_FRICTION)
 	
 	# Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())

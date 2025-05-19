@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://oi8sct5g8fi5" path="res://Scenes/game_ui.tscn" id="3_be6b2"]
 [ext_resource type="PackedScene" uid="uid://bequanpoqt731" path="res://Scenes/spawner.tscn" id="4_m8c50"]
 [ext_resource type="PackedScene" uid="uid://b10gbr3kiakqt" path="res://Scenes/drone_enemy.tscn" id="5_ckklr"]
-[ext_resource type="PackedScene" uid="uid://dmk4gixgxrcm5" path="res://Scenes/world.tscn" id="5_fqf3k"]
+[ext_resource type="PackedScene" uid="uid://bnee2dpncngq5" path="res://Scenes/world.tscn" id="5_fqf3k"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ddp6h"]
 vertices = PackedVector3Array(-499.5, 0.5, -499.5, -499.5, 0.5, 499.5, 499.5, 0.5, 499.5, 499.5, 0.5, -499.5)
@@ -133,12 +133,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8192, 6.94121, 7.51096)
 size = Vector3(3.2666, 4, 1)
 material = SubResource("StandardMaterial3D_s8lxt")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 8.11157, 0)
-shadow_enabled = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = SubResource("Environment_nxf5m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/WorldEnvironment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 8.11157, 0)
+shadow_enabled = true
 
 [node name="Entities" type="Node3D" parent="."]
 
