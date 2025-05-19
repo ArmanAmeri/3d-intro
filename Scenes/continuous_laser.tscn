@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cvhekopx3454x"]
+[gd_scene load_steps=19 format=3 uid="uid://cvhekopx3454x"]
 
 [ext_resource type="Script" path="res://Scripts/continuous_laser.gd" id="1_qfoja"]
+[ext_resource type="Texture2D" uid="uid://bfbgo75vrb4na" path="res://Assets/Textures/texturetest.png" id="2_gby0e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkdh7"]
 transparency = 1
@@ -17,8 +18,10 @@ bottom_radius = 0.4
 radius = 1.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcpjw"]
+albedo_texture = ExtResource("2_gby0e")
 emission_enabled = true
-emission = Color(100, 100, 100, 1)
+emission = Color(1, 1, 1, 1)
+emission_texture = ExtResource("2_gby0e")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_svv3g"]
 material = SubResource("StandardMaterial3D_tcpjw")
@@ -115,6 +118,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_55od7"]
 resource_name = "fire_laser"
@@ -126,10 +141,10 @@ tracks/0/path = NodePath("Circle:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 3.03333, 4.03051, 5.03333, 5.26667),
+"times": PackedFloat32Array(0, 2.26667, 3.03333, 4.03051, 5.03333, 5.26667),
 "transitions": PackedFloat32Array(0.5, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.15, 0.15, 0.15), Vector3(1.2, 1.2, 1.2), Vector3(1.1, 1.1, 1.1), Vector3(1.2, 1.2, 1.2), Vector3(1.1, 1.1, 1.1), Vector3(2, 2, 2)]
+"values": [Vector3(0.15, 0.15, 0.15), Vector3(2, 2, 2), Vector3(1.1, 1.1, 1.1), Vector3(1.2, 1.2, 1.2), Vector3(1.1, 1.1, 1.1), Vector3(2, 2, 2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -180,6 +195,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(5.03333, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 349.066)]
 }
 
 [sub_resource type="Animation" id="Animation_46et0"]
@@ -253,6 +280,24 @@ _data = {
 "laser_dissipate": SubResource("Animation_46et0")
 }
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nmc1o"]
+emission_shape_scale = Vector3(0.3, 0.3, 0.3)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -0.500002
+radial_accel_max = -0.500002
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yefmm"]
+transparency = 1
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sn3m6"]
+material = SubResource("StandardMaterial3D_yefmm")
+radius = 0.025
+height = 0.05
+
 [node name="ContinuousLaser" type="Node3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 script = ExtResource("1_qfoja")
@@ -302,6 +347,16 @@ libraries = {
 [node name="LaserStayTimer" type="Timer" parent="Utilities"]
 
 [node name="CooldownTimer" type="Timer" parent="Utilities"]
+
+[node name="CPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 20
+lifetime = 0.7
+one_shot = true
+speed_scale = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_nmc1o")
+draw_pass_1 = SubResource("SphereMesh_sn3m6")
 
 [connection signal="area_entered" from="Laser/Outside/Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Laser/Outside/Hitbox" to="." method="_on_hitbox_area_exited"]
