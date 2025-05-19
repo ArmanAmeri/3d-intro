@@ -1,7 +1,7 @@
 extends Node3D
 signal laser_fired()
 
-@export var laser_stay_time: float = 4.0
+@export var laser_stay_time: float = 5.0
 
 
 @onready var player: Player = $"../../../.."
@@ -17,7 +17,7 @@ func _ready() -> void:
 func on_laser_fired():
 	if can_be_fired:
 		animp.play("fire_laser")
-		timer.start(6 + laser_stay_time)
+		timer.start(5 + laser_stay_time)
 		can_be_fired = false
 		
 

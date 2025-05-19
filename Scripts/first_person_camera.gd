@@ -1,7 +1,7 @@
 extends Camera3D
 
-@export var period = 4
-@export var magnitude = 0.15
+@export var period = 5
+@export var magnitude = 0.25
 @onready var continuous_laser: Node3D = $ContinuousLaser
 @onready var player = get_tree().get_first_node_in_group("player")
 
