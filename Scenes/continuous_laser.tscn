@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cvhekopx3454x"]
+[gd_scene load_steps=21 format=3 uid="uid://cvhekopx3454x"]
 
 [ext_resource type="Script" path="res://Scripts/continuous_laser.gd" id="1_qfoja"]
 [ext_resource type="Texture2D" uid="uid://bfbgo75vrb4na" path="res://Assets/Textures/texturetest.png" id="2_gby0e"]
@@ -130,6 +130,42 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ShockwaveEffect:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ShockwaveEffect:mesh:material:albedo_color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.6, 1, 0.627451)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ShockwaveEffect:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_55od7"]
 resource_name = "fire_laser"
@@ -207,6 +243,42 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 349.066)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ShockwaveEffect:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 5.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ShockwaveEffect:mesh:material:albedo_color")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(5.03333, 5.73333),
+"transitions": PackedFloat32Array(0.307786, 1),
+"update": 0,
+"values": [Color(0, 0.6, 1, 0.627451), Color(0, 0.6, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ShockwaveEffect:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(5.03333, 5.73333),
+"transitions": PackedFloat32Array(0.307786, 1),
+"update": 0,
+"values": [Vector3(0.75, 0.75, 0.75), Vector3(1.1, 1.1, 1.1)]
 }
 
 [sub_resource type="Animation" id="Animation_46et0"]
@@ -295,8 +367,18 @@ emission = Color(1, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_sn3m6"]
 material = SubResource("StandardMaterial3D_yefmm")
-radius = 0.025
-height = 0.05
+radius = 0.015
+height = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yg73m"]
+transparency = 1
+albedo_color = Color(0, 0.6, 1, 0.627451)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_s8el4"]
+material = SubResource("StandardMaterial3D_yg73m")
+top_radius = 0.2
+bottom_radius = 0.1
+height = 0.1
 
 [node name="ContinuousLaser" type="Node3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
@@ -348,15 +430,24 @@ libraries = {
 
 [node name="CooldownTimer" type="Timer" parent="Utilities"]
 
-[node name="CPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="SuckParticles" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 20
+amount = 25
 lifetime = 0.7
 one_shot = true
 speed_scale = 0.5
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_nmc1o")
 draw_pass_1 = SubResource("SphereMesh_sn3m6")
+
+[node name="ShockwaveEffect" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 1.18427e-15, 5.17662e-23, 0, -4.37114e-08, 1, 1.18427e-15, -1, -4.37114e-08, 0, 0, -0.216563)
+visible = false
+mesh = SubResource("CylinderMesh_s8el4")
+
+[node name="ShockwaveEffect" type="MeshInstance3D" parent="ShockwaveEffect"]
+transform = Transform3D(1.3, -1.22143e-15, -5.96046e-08, -3.31597e-15, 1.3, 3.55271e-15, 5.96046e-08, -3.55271e-15, 1.3, 5.72605e-16, 0.104961, 4.588e-09)
+mesh = SubResource("CylinderMesh_s8el4")
 
 [connection signal="area_entered" from="Laser/Outside/Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Laser/Outside/Hitbox" to="." method="_on_hitbox_area_exited"]
