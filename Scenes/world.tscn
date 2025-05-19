@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmk4gixgxrcm5"]
+[gd_scene load_steps=2 format=3 uid="uid://bnee2dpncngq5"]
 
-[ext_resource type="MeshLibrary" uid="uid://dwb5n58ajl2by" path="res://Assets/WorldTiles.tres" id="1_fewj4"]
+[ext_resource type="MeshLibrary" uid="uid://c47nqbo1k3y86" path="res://Assets/WorldTiles.tres" id="1_fewj4"]
 
 [node name="World" type="Node3D"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

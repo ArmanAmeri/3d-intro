@@ -1,75 +1,85 @@
 extends CharacterBody3D
 class_name Player
-signal hurt()
-@onready var twist_pivot: Node3D = $TwistPivot
-@onready var pitch_pivot: Node3D = $TwistPivot/PitchPivot
-@onready var thirdp_camera: Camera3D = $TwistPivot/PitchPivot/ThirdPersonCamera
-@onready var firstp_camera: Camera3D = $TwistPivot/PitchPivot/FirstPersonCamera
-@onready var body: Node3D = $Body
-@onready var face: MeshInstance3D = $Body/Face
+
+@onready var head = $Head
+@onready var camera = $Head/FirstPersonCamera
+
+var gravity: float = 9.8
+
+var speed
+const WALK_SPEED = 5.0
+const SPRINT_SPEED = 8.0
+const JUMP_VELOCITY = 4.8
+const SENSITIVITY = 0.004
+
+#bob variables
+const BOB_FREQ = 2.4
+const BOB_AMP = 0.08
+var t_bob = 0.0
+
+#fov variables
+const BASE_FOV = 75.0
+const FOV_CHANGE = 1.5
 
 var hp_max: int = 100
 var hp: int
-var face_rotation
-var mouse_sensivity: float = 0.001
-var twist_input: float = 0.0 #horizontal
-var pitch_input: float = 0.0 #vertical
+
 # Add a flag to track if player is already dead
 var is_dead: bool = false
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+
+
 
 func _ready() -> void:
 	hp = hp_max
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	if firstp_camera.current == true:
-		face.visible = false
-	else: face.visible = true
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity.y -= gravity * delta
 	
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	# Handle Jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	if Input.is_action_just_pressed("toggle camera"):
-		toggle_camera()
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("a", "d", "w", "s")
-	var direction := (twist_pivot.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	if input_dir != Vector2.ZERO:
-		body.rotation_degrees.y = twist_pivot.rotation_degrees.y - rad_to_deg(input_dir.angle()) -90
-	
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		
+	# Handle Sprint.
+	if Input.is_action_pressed("sprint"):
+		speed = SPRINT_SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	move_and_slide()
+		speed = WALK_SPEED
+
+	# Get the input direction and handle the movement/deceleration.
+	var input_dir = Input.get_vector("a", "d", "w", "s")
+	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if is_on_floor():
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+	else:
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 	
+	# Head bob
+	t_bob += delta * velocity.length() * float(is_on_floor())
+	camera.transform.origin = _headbob(t_bob)
+	
+	#Mouse Lock
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 	if Input.is_action_just_pressed("shoot"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	twist_pivot.rotate_y(twist_input)
-	pitch_pivot.rotate_x(pitch_input)
-	pitch_pivot.rotation.x = clamp(
-		pitch_pivot.rotation.x,
-		-1,
-		1
-	)
-	twist_input = 0.0
-	pitch_input = 0.0
+	# FOV
+	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
+	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
+	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+	
+	move_and_slide()
 	
 func take_damage(amount:int) -> void:
 	# If already dead, don't take more damage
@@ -77,7 +87,7 @@ func take_damage(amount:int) -> void:
 		return
 	hp -= amount
 	
-	hurt.emit()
+	Signalbus.player_hurt.emit()
 	
 	if hp <= 0:
 		die()
@@ -104,18 +114,18 @@ func die() -> void:
 	# Add it to the scene tree
 	get_tree().root.add_child(death_overlay)
 	
-func toggle_camera():
-	if thirdp_camera.current == true:
-		firstp_camera.make_current()
-		thirdp_camera.clear_current()
-		face.visible = false
-	else:
-		thirdp_camera.make_current()
-		firstp_camera.clear_current()
-		face.visible = true
-		
-func _unhandled_input(event: InputEvent) -> void:
+
+
+
+func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			twist_input = - event.relative.x * mouse_sensivity
-			pitch_input = - event.relative.y * mouse_sensivity
+		head.rotate_y(-event.relative.x * SENSITIVITY)
+		camera.rotate_x(-event.relative.y * SENSITIVITY)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+
+
+func _headbob(time) -> Vector3:
+	var pos = Vector3.ZERO
+	pos.y = sin(time * BOB_FREQ) * BOB_AMP
+	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
+	return pos

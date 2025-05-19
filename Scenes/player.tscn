@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://buce3731mh8jo"]
+[gd_scene load_steps=8 format=3 uid="uid://buce3731mh8jo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jihlc"]
-[ext_resource type="Script" path="res://Scripts/playerbody.gd" id="2_vo0h2"]
 [ext_resource type="Script" path="res://Scripts/gun.gd" id="3_lhty6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]
+radius = 0.249022
+height = 1.7677
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eqslb"]
 
@@ -22,40 +23,38 @@ roughness = 0.23
 material = SubResource("StandardMaterial3D_utxeq")
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24638, 0)
 collision_mask = 30
 script = ExtResource("1_jihlc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="feet" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87, 0)
 shape = SubResource("CapsuleShape3D_yu7ey")
 
-[node name="TwistPivot" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
-
-[node name="FirstPersonCamera" type="Camera3D" parent="TwistPivot/PitchPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.2)
+[node name="FirstPersonCamera" type="Camera3D" parent="Head"]
 current = true
 
-[node name="MachineGun" type="Node3D" parent="TwistPivot/PitchPivot/FirstPersonCamera"]
+[node name="MachineGun" type="Node3D" parent="Head/FirstPersonCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 script = ExtResource("3_lhty6")
 
-[node name="Timer" type="Timer" parent="TwistPivot/PitchPivot/FirstPersonCamera/MachineGun"]
+[node name="Timer" type="Timer" parent="Head/FirstPersonCamera/MachineGun"]
 one_shot = true
 
-[node name="ThirdPersonCamera" type="Camera3D" parent="TwistPivot/PitchPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.961459, 0.274949, 0, -0.274949, 0.961459, -0.00217092, 1.63495, 2.65094)
+[node name="DebugCamera" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 0.863572, 0.504226, 0, -0.504226, 0.863572, 0, 1.8298, 3.3043)
 
-[node name="Body" type="Node3D" parent="."]
-script = ExtResource("2_vo0h2")
+[node name="Bodyold" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Face" type="MeshInstance3D" parent="Body"]
+[node name="Face" type="MeshInstance3D" parent="Bodyold"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00851703, 0.547664, -0.312788)
 gi_mode = 2
 mesh = SubResource("SphereMesh_0h3go")
 skeleton = NodePath("../..")
 
-[node name="Body" type="MeshInstance3D" parent="Body"]
+[node name="Body" type="MeshInstance3D" parent="Bodyold"]
 mesh = SubResource("CapsuleMesh_pw36s")
 skeleton = NodePath("../..")
