@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/first_person_camera.gd" id="2_fypxa"]
 [ext_resource type="Script" path="res://Scripts/playerbody.gd" id="2_vo0h2"]
 [ext_resource type="Script" path="res://Scripts/gun.gd" id="3_lhty6"]
-[ext_resource type="PackedScene" uid="uid://bqnavtcia3xna" path="res://Scenes/continuous_laser.tscn" id="5_53670"]
+[ext_resource type="PackedScene" uid="uid://cvhekopx3454x" path="res://Scenes/continuous_laser.tscn" id="5_53670"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]
 
@@ -65,7 +65,3 @@ skeleton = NodePath("../..")
 [node name="Body" type="MeshInstance3D" parent="Body"]
 mesh = SubResource("CapsuleMesh_pw36s")
 skeleton = NodePath("../..")
-
-[node name="LaserCooldownTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="LaserCooldownTimer" to="." method="_on_laser_cooldown_timer_timeout"]
