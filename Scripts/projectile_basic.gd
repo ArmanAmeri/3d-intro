@@ -1,8 +1,9 @@
 extends RayCast3D
 
 @onready var remote_transform: RemoteTransform3D = RemoteTransform3D.new()
+@onready var bullet_tracer: Node3D = $BulletTracer
 
-var speed : float = 150.0
+var speed : float = 70.0
 var damage: int = 20
 
 func _physics_process(delta: float) -> void:
@@ -16,7 +17,10 @@ func _physics_process(delta: float) -> void:
 		
 		if collider.has_method("take_damage"):
 			collider.take_damage(damage)
-			
+		
+		if bullet_tracer:
+			bullet_tracer.queue_free()
+		
 		set_physics_process(false)
 		collider.add_child(remote_transform)
 		remote_transform.global_transform = global_transform

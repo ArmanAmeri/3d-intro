@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjrbre86epvys"]
+
+[ext_resource type="Texture2D" uid="uid://cw3getms4wnek" path="res://Assets/Gunz/weapons_asset_pack/kenney-white-smoke-texture-cc0.png" id="1_k0nom"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pdg67"]
+angle_min = 1.07288e-05
+angle_max = 360.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kjp0"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.12549)
+albedo_texture = ExtResource("1_k0nom")
+emission_enabled = true
+emission = Color(1, 0.764706, 0, 1)
+emission_energy_multiplier = 2.0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_byab6"]
+material = SubResource("StandardMaterial3D_7kjp0")
+size = Vector2(0.3, 0.3)
+
+[node name="MuzzleFlash" type="GPUParticles3D"]
+emitting = false
+amount = 1
+lifetime = 0.01
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_pdg67")
+draw_pass_1 = SubResource("QuadMesh_byab6")

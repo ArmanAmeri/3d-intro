@@ -10,15 +10,15 @@ signal used_ultimate()
 @onready var arms: Node3D = $Head/FirstPersonCamera/Arms
 
 
-var gravity: float = 10
+var gravity: float = 9.8
+const GRAV_AMP = 1.35
+const AIR_FRICTION = 1.25
 
 var speed
 const WALK_SPEED = 5.0
-const SPRINT_SPEED = 8.0
+const SPRINT_SPEED = 7.0
 const JUMP_VELOCITY = 4.8
 const SENSITIVITY = 0.001
-const AIR_FRICTION = 2.0
-const GROUND_FRICTION = 6.0
 
 #bob variables
 const BOB_FREQ = 2.4
@@ -38,7 +38,6 @@ var hp: int
 var is_dead: bool = false
 
 
-
 func _ready() -> void:
 	continuous_laser.visible = false
 	hp = hp_max
@@ -48,7 +47,7 @@ func _ready() -> void:
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y -= gravity * delta * GRAV_AMP
 	
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -68,11 +67,11 @@ func _physics_process(delta):
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * GROUND_FRICTION)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * GROUND_FRICTION)
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * AIR_FRICTION)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * AIR_FRICTION)
+		velocity.x = lerp(velocity.x, direction.x * speed / AIR_FRICTION, delta * 3.0)
+		velocity.z = lerp(velocity.z, direction.z * speed / AIR_FRICTION, delta * 3.0)
 	
 	# Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())
