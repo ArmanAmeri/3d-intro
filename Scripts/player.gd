@@ -6,6 +6,8 @@ signal used_special()
 @onready var head = $Head
 @onready var camera = $Head/FirstPersonCamera
 @onready var continuous_laser: Node3D = $Head/FirstPersonCamera/ContinuousLaser
+@onready var arms: Node3D = $Head/FirstPersonCamera/Arms
+
 
 var gravity: float = 10
 
@@ -20,7 +22,9 @@ const GROUND_FRICTION = 6.0
 #bob variables
 const BOB_FREQ = 2.4
 const BOB_AMP = 0.08
+const A_BOB_AMP = 0.02
 var t_bob = 0.0
+var a_bob = 0.0
 
 #fov variables
 const BASE_FOV = 75.0
@@ -71,7 +75,11 @@ func _physics_process(delta):
 	
 	# Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())
-	camera.transform.origin = _headbob(t_bob)
+	camera.transform.origin = _headbob(t_bob, "camera")
+	
+	# Arm bob
+	a_bob += delta * velocity.length() * float(is_on_floor())
+	arms.transform.origin = _headbob(a_bob, "arms")
 	
 	#Mouse Lock
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -132,11 +140,15 @@ func _unhandled_input(event):
 		if event is InputEventMouseMotion:
 			head.rotate_y(-event.relative.x * SENSITIVITY)
 			camera.rotate_x(-event.relative.y * SENSITIVITY)
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 
-func _headbob(time) -> Vector3:
+func _headbob(time, type: String) -> Vector3:
 	var pos = Vector3.ZERO
-	pos.y = sin(time * BOB_FREQ) * BOB_AMP
-	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
+	if type == "camera":
+		pos.y = sin(time * BOB_FREQ) * BOB_AMP
+		pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
+	elif type == "arms":
+		pos.y = sin(time * BOB_FREQ ) * A_BOB_AMP
+		pos.x = cos(time * BOB_FREQ / 2) * A_BOB_AMP
 	return pos

@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dah10fs4pegkv"]
+[gd_scene load_steps=4 format=3 uid="uid://dah10fs4pegkv"]
 
 [ext_resource type="Script" path="res://Scripts/projectile_basic.gd" id="1_8so0n"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_j3ily"]
-top_radius = 0.0
-bottom_radius = 0.1
-height = 1.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4q8ho"]
+metallic = 1.0
+roughness = 0.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_erudu"]
+material = SubResource("StandardMaterial3D_4q8ho")
+radius = 0.03
+height = 0.12
 
 [node name="Bullet" type="RayCast3D"]
 top_level = true
@@ -13,9 +17,9 @@ collision_mask = 15
 collide_with_areas = true
 script = ExtResource("1_8so0n")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_j3ily")
+mesh = SubResource("CapsuleMesh_erudu")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

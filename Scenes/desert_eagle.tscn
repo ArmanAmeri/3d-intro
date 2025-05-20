@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://wywjy7x1cw54"]
+
+[ext_resource type="PackedScene" uid="uid://yhtddmckbdor" path="res://Assets/Gunz/low-poly_desert_eagle.glb" id="1_nc3wh"]
+
+[node name="Desert Eagle" instance=ExtResource("1_nc3wh")]
