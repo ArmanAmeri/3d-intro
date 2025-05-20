@@ -1,15 +1,12 @@
 extends Camera3D
 
-@export var period = 5
-@export var magnitude = 0.4
-@onready var continuous_laser: Node3D = $ContinuousLaser
 @onready var player = get_tree().get_first_node_in_group("player")
 
 func _ready() -> void:
-	continuous_laser.laser_fired.connect(_camera_shake)
+	Signalbus.shake_screen.connect(_camera_shake)
 
 
-func _camera_shake():
+func _camera_shake(magnitude: float, period: float):
 	var initial_transform = self.transform 
 	var elapsed_time = 0.0
 

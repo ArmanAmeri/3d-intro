@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 signal used_special()
+signal used_ultimate()
 
 @onready var head = $Head
 @onready var camera = $Head/FirstPersonCamera
@@ -81,6 +82,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Special"):
 		used_special.emit()
 		continuous_laser.visible = true
+	
+	if Input.is_action_just_pressed("ultimate"):
+		used_ultimate.emit()
+		#make domain visible here
 	
 	# FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)

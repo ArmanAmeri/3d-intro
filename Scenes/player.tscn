@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://buce3731mh8jo"]
+[gd_scene load_steps=12 format=3 uid="uid://buce3731mh8jo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jihlc"]
 [ext_resource type="Script" path="res://Scripts/first_person_camera.gd" id="2_fypxa"]
 [ext_resource type="Script" path="res://Scripts/gun.gd" id="3_lhty6"]
 [ext_resource type="PackedScene" uid="uid://c5wds8yfyh2h" path="res://Scenes/arms.tscn" id="5_5xt66"]
 [ext_resource type="PackedScene" uid="uid://cvhekopx3454x" path="res://Scenes/continuous_laser.tscn" id="5_53670"]
+[ext_resource type="PackedScene" uid="uid://c6kl6voo8qeon" path="res://Scenes/malevolent_shrine.tscn" id="6_ympkj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]
 radius = 0.249022
@@ -52,6 +53,9 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.75088, -2.24089)
 
 [node name="Arms" parent="Head/FirstPersonCamera" instance=ExtResource("5_5xt66")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.3, 0)
+
+[node name="MalevolentShrine" parent="Head/FirstPersonCamera" instance=ExtResource("6_ympkj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 10)
 
 [node name="DebugCamera" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 0.863572, 0.504226, 0, -0.504226, 0.863572, 0, 1.8298, 3.3043)
