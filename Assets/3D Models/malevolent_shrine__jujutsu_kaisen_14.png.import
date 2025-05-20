@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bthuotha78iuy"
+path.s3tc="res://.godot/imported/malevolent_shrine__jujutsu_kaisen_14.png-2b2d230ac9911b905b05a1b68fea1e16.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "d56be7fac44601a6ce0ee4d6757707fe"
+}
+
+[deps]
+
+source_file="res://Assets/3D Models/malevolent_shrine__jujutsu_kaisen_14.png"
+dest_files=["res://.godot/imported/malevolent_shrine__jujutsu_kaisen_14.png-2b2d230ac9911b905b05a1b68fea1e16.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -147,8 +147,9 @@ spawn_interval = 1.0
 infinite_spawn = true
 
 [node name="Player" parent="Entities" instance=ExtResource("1_al1kw")]
-
-[node name="World2" parent="." instance=ExtResource("5_fqf3k")]
-transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, -1.71178, 27.1626)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618382, 0)
 
 [node name="GameUI" parent="." instance=ExtResource("3_be6b2")]
+
+[node name="World2" parent="." instance=ExtResource("5_fqf3k")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.06649, -8.62258)
