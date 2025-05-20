@@ -8,20 +8,20 @@ extends Node3D
 @onready var anim_p: AnimationPlayer = $AnimationPlayer
 @onready var stay_timer: Timer = $Timers/StayTimer
 @onready var cooldown_timer: Timer = $Timers/CooldownTimer
-@onready var player: Player = $"../../.."
+@onready var player: Player = $".."
 @onready var light = get_tree().get_first_node_in_group("light")
 
 var domain_can_expand: bool = true
 
 func _ready() -> void:
 	top_level = false
-	#visible = false
-	#position = Vector3(0, -13, 0)
+	visible = false
 	player.used_ultimate.connect(expand_domain)
 
 func expand_domain():
 	print("button pressed")
 	if domain_can_expand:
+		position = Vector3(player.position.x, player.position.y, player.position.z + 13)
 		print("domain expanded")
 		light.light_energy = 0.3
 		domain_can_expand = false
@@ -34,8 +34,7 @@ func expand_domain():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if not top_level:
-		position = player.global_position
+	pass
 
 
 func _on_stay_timer_timeout() -> void:
