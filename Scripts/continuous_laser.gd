@@ -1,5 +1,4 @@
 extends Node3D
-signal laser_fired()
 
 @export var laser_stay_time: float = 5.0
 @export var laser_cooldown: float = 5.0
@@ -33,7 +32,7 @@ func on_laser_fired():
 
 
 func _emit_laser_fired() -> void:
-	laser_fired.emit()
+	Signalbus.shake_screen.emit(0.4, 5)
 
 
 func _on_hitbox_area_entered(area: Area3D) -> void:
@@ -41,7 +40,7 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 		area.taking_continuous_damage = true
 		while area.taking_continuous_damage:
 			area.take_damage(tick_damage)
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(tick_length).timeout
 			if is_instance_valid(area):
 				continue 
 			else: break
