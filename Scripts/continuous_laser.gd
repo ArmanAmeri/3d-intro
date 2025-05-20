@@ -10,10 +10,11 @@ signal laser_fired()
 ##Length of tick in seconds
 @export var tick_length: float = 0.1
 
-
+@onready var suck_particle_effect: GPUParticles3D = $SuckParticles
 @onready var player: Player = $"../../.."
 @onready var animp: AnimationPlayer = $AnimationPlayer
 @onready var laser_stay_timer: Timer = $Utilities/LaserStayTimer
+@onready var cooldown_timer: Timer = $Utilities/CooldownTimer
 
 
 var can_fire: bool = true
@@ -26,7 +27,9 @@ func on_laser_fired():
 	if can_fire:
 		can_fire = false
 		animp.play("fire_laser")
+		suck_particle_effect.emitting = true
 		laser_stay_timer.start(5 + laser_stay_time)
+		cooldown_timer.start(5 + laser_stay_time + laser_cooldown)
 
 
 func _emit_laser_fired() -> void:
