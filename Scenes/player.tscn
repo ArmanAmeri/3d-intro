@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jihlc"]
 [ext_resource type="Script" path="res://Scripts/first_person_camera.gd" id="2_fypxa"]
 [ext_resource type="Script" path="res://Scripts/gun.gd" id="3_lhty6"]
-[ext_resource type="PackedScene" uid="uid://drmcg2j57vblv" path="res://Scenes/arms.tscn" id="5_5xt66"]
-[ext_resource type="PackedScene" path="res://Scenes/continuous_laser.tscn" id="5_53670"]
+[ext_resource type="PackedScene" uid="uid://c5wds8yfyh2h" path="res://Scenes/arms.tscn" id="5_5xt66"]
+[ext_resource type="PackedScene" uid="uid://cvhekopx3454x" path="res://Scenes/continuous_laser.tscn" id="5_53670"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]
 radius = 0.249022
@@ -48,7 +48,7 @@ script = ExtResource("3_lhty6")
 one_shot = true
 
 [node name="ContinuousLaser" parent="Head/FirstPersonCamera" instance=ExtResource("5_53670")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1.22904, -1.92068)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.75088, -2.24089)
 
 [node name="Arms" parent="Head/FirstPersonCamera" instance=ExtResource("5_5xt66")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.3, 0)

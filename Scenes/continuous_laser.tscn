@@ -36,6 +36,8 @@ emission = Color(0, 0.45098, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_p1gwg"]
 material = SubResource("StandardMaterial3D_genx6")
+radius = 0.45
+height = 0.9
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ns0hk"]
 emission_enabled = true
@@ -180,7 +182,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2.26667, 3.03333, 4.03051, 5.03333, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9, 7, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.61067, 9.71067, 9.81067, 9.91067, 10),
 "transitions": PackedFloat32Array(0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.15, 0.15, 0.15), Vector3(2, 2, 2), Vector3(1.1, 1.1, 1.1), Vector3(1.2, 1.2, 1.2), Vector3(1.1, 1.1, 1.1), Vector3(2, 2, 2), Vector3(2.2, 2.2, 2.2), Vector3(2, 2, 2), Vector3(2.2, 2.2, 2.2), Vector3(2, 2, 2), Vector3(2.2, 2.2, 2.2), Vector3(2, 2, 2), Vector3(2.2, 2.2, 2.2), Vector3(2, 2, 2), Vector3(2.2, 2.2, 2.2), Vector3(2, 2, 2), Vector3(2.2, 2.2, 2.2), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2), Vector3(2.1, 2.1, 2.1), Vector3(2, 2, 2)]
+"values": [Vector3(0.15, 0.15, 0.15), Vector3(1.8, 1.8, 1.8), Vector3(1.1, 1.1, 1.1), Vector3(1.2, 1.2, 1.2), Vector3(1.1, 1.1, 1.1), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6), Vector3(1.7, 1.7, 1.7), Vector3(1.6, 1.6, 1.6)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -383,6 +385,7 @@ height = 0.1
 [node name="ContinuousLaser" type="Node3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 script = ExtResource("1_qfoja")
+tick_damage = 15
 tick_length = 0.001
 
 [node name="Laser" type="RayCast3D" parent="."]
