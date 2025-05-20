@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var disabled: bool
 @export var spawn_scene: PackedScene
 @export var spawn_interval: float = 2.0
 @export var max_spawns: int = 10
@@ -15,7 +16,9 @@ func _ready() -> void:
 	add_child(timer)
 	timer.wait_time = spawn_interval
 	timer.connect("timeout", _on_timer_timeout)
-	timer.start()
+	
+	if !disabled:
+		timer.start()
 
 	if infinite_spawn:
 		max_spawns = -1
