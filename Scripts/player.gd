@@ -7,15 +7,13 @@ signal used_special()
 @onready var camera = $Head/FirstPersonCamera
 @onready var continuous_laser: Node3D = $Head/FirstPersonCamera/ContinuousLaser
 
-var gravity: float = 10
+var gravity: float = 9.8
 
 var speed
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.8
 const SENSITIVITY = 0.001
-const AIR_FRICTION = 2.0
-const GROUND_FRICTION = 6.0
 
 #bob variables
 const BOB_FREQ = 2.4
@@ -63,11 +61,11 @@ func _physics_process(delta):
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * GROUND_FRICTION)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * GROUND_FRICTION)
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * AIR_FRICTION)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * AIR_FRICTION)
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 	
 	# Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())
@@ -128,11 +126,10 @@ func die() -> void:
 
 
 func _unhandled_input(event):
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		if event is InputEventMouseMotion:
-			head.rotate_y(-event.relative.x * SENSITIVITY)
-			camera.rotate_x(-event.relative.y * SENSITIVITY)
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+	if event is InputEventMouseMotion:
+		head.rotate_y(-event.relative.x * SENSITIVITY)
+		camera.rotate_x(-event.relative.y * SENSITIVITY)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 
 func _headbob(time) -> Vector3:

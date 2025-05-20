@@ -296,7 +296,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(0.15932, 1),
 "update": 0,
-"values": [Vector3(2, 2, 2), Vector3(0, 0, 0)]
+"values": [Vector3(1.6, 1.6, 1.6), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -320,7 +320,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1.93333),
 "transitions": PackedFloat32Array(0.133972, 4.75683),
 "update": 0,
-"values": [Vector3(1, 4, 1), Vector3(0.001, 1.5, 0.001)]
+"values": [Vector3(1, 4, 1), Vector3(0.001, 3, 0.001)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -389,7 +389,7 @@ tick_damage = 15
 tick_length = 0.001
 
 [node name="Laser" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-09, 1, 0, -0.1, -4.37114e-08, 0, 0, 0.00914729)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-09, 1, 0, -0.1, -4.37114e-08, 0, 0, 0.0197559)
 visible = false
 collision_mask = 16
 collide_with_areas = true

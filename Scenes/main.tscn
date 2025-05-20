@@ -28,8 +28,6 @@ glow_enabled = true
 
 [node name="Main" type="Node3D"]
 
-[node name="GameUI" parent="." instance=ExtResource("3_be6b2")]
-
 [node name="World" type="Node3D" parent="."]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="World"]
@@ -152,3 +150,5 @@ infinite_spawn = true
 
 [node name="World2" parent="." instance=ExtResource("5_fqf3k")]
 transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, -1.71178, 27.1626)
+
+[node name="GameUI" parent="." instance=ExtResource("3_be6b2")]

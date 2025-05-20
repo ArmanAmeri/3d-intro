@@ -8,6 +8,7 @@ extends CanvasLayer
 var enemies: int = 0
 
 func _ready() -> void:
+	set_process_unhandled_input(true)
 	progress_bar.max_value = player.hp_max
 	hp_amount_label.text = str(player.hp)
 	Signalbus.connect("anemy_created", on_anemy_created)
