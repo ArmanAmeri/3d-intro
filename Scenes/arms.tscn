@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://drmcg2j57vblv"]
+
+[ext_resource type="PackedScene" uid="uid://dw3fbo2r06me2" path="res://Assets/Character/Rigged Fps Arms.glb" id="1_x37cw"]
+
+[sub_resource type="Animation" id="Animation_grajt"]
+resource_name = "pistol_shoot"
+length = 10.0
+step = 0.03
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c7bvs"]
+_data = {
+"pistol_shoot": SubResource("Animation_grajt")
+}
+
+[node name="Arms" instance=ExtResource("1_x37cw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="RootNode" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338348, 0, 0)
+
+[node name="Skeleton3D" parent="RootNode/Armature" index="0"]
+bones/15/rotation = Quaternion(-0.527525, -0.436525, 0.528475, -0.470525)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RootNode/Armature" index="1"]
+root_node = NodePath("../Skeleton3D")
+libraries = {
+"": SubResource("AnimationLibrary_c7bvs")
+}

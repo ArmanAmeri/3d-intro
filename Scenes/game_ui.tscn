@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://oi8sct5g8fi5"]
+[gd_scene load_steps=10 format=3 uid="uid://oi8sct5g8fi5"]
 
 [ext_resource type="Script" path="res://Scripts/game_ui.gd" id="1_syeqx"]
 [ext_resource type="Texture2D" uid="uid://codd6mtrjkk5p" path="res://Assets/Crosshair.png" id="2_c4x62"]
+[ext_resource type="Theme" uid="uid://bx0capsjjpfch" path="res://Assets/Themes/DebugPanel.tres" id="3_e1a7q"]
+[ext_resource type="Script" path="res://Scripts/debug_interface.gd" id="4_segba"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smus2"]
 bg_color = Color(0.36, 0, 0, 1)
@@ -96,3 +98,18 @@ text = "0"
 label_settings = SubResource("LabelSettings_cckuk")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DebugInterface" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 215.0
+offset_bottom = 55.0
+theme = ExtResource("3_e1a7q")
+script = ExtResource("4_segba")
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugInterface"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugInterface/MarginContainer"]
+layout_mode = 2
