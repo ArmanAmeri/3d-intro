@@ -1,28 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5wds8yfyh2h"]
+[gd_scene load_steps=3 format=3 uid="uid://drmcg2j57vblv"]
 
-[ext_resource type="PackedScene" uid="uid://dw3fbo2r06me2" path="res://Assets/Character/Rigged Fps Arms.glb" id="1_x37cw"]
+[ext_resource type="PackedScene" uid="uid://b6u0eaar5813" path="res://Assets/Fps Rig.glb" id="1_6x0gt"]
+[ext_resource type="PackedScene" uid="uid://to7yshq1m726" path="res://Scenes/machine_gun.tscn" id="2_gops1"]
 
-[sub_resource type="Animation" id="Animation_grajt"]
-resource_name = "pistol_shoot"
-length = 10.0
-step = 0.03
+[node name="Arms" instance=ExtResource("1_6x0gt")]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_c7bvs"]
-_data = {
-"pistol_shoot": SubResource("Animation_grajt")
-}
+[node name="Skeleton3D" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.202, -0.3, -0.683)
+bones/2/position = Vector3(-0.00237808, 0.000314679, -0.000164757)
+bones/2/rotation = Quaternion(0.128402, 0.173442, -0.784523, 0.581339)
+bones/3/rotation = Quaternion(0.177161, -0.146993, -0.128246, 0.964655)
+bones/4/rotation = Quaternion(-0.14257, -0.114666, 0.254587, 0.949585)
+bones/14/rotation = Quaternion(0.871089, 0.13469, 0.199779, -0.427962)
+bones/15/rotation = Quaternion(-0.0807271, -0.00453031, 0.105706, 0.991105)
+bones/17/position = Vector3(-0.00263481, -0.00118565, 1.4025e-05)
+bones/17/rotation = Quaternion(0.674832, 0.653169, -0.283245, 0.194277)
+bones/18/rotation = Quaternion(-0.092222, 0.270899, -0.00416418, 0.958171)
+bones/29/rotation = Quaternion(0.691818, 0.212386, 0.118628, 0.679859)
 
-[node name="Arms" instance=ExtResource("1_x37cw")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-
-[node name="RootNode" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338348, 0, 0)
-
-[node name="Skeleton3D" parent="RootNode/Armature" index="0"]
-bones/15/rotation = Quaternion(-0.527525, -0.436525, 0.528475, -0.470525)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RootNode/Armature" index="1"]
-root_node = NodePath("../Skeleton3D")
-libraries = {
-"": SubResource("AnimationLibrary_c7bvs")
-}
+[node name="MachineGun" parent="Skeleton3D" index="2" instance=ExtResource("2_gops1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.543749, 0.156508, 0.367201)
