@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=4 uid="uid://unuxevls1pct"]
+[gd_scene load_steps=13 format=4 uid="uid://unuxevls1pct"]
 
 [ext_resource type="Script" path="res://Scripts/arms.gd" id="1_i1j3x"]
-[ext_resource type="PackedScene" uid="uid://b4bepe0ixe4dn" path="res://Scenes/GUNZ/glock_19.tscn" id="2_k7riq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otts4"]
 resource_name = "Shirt"
@@ -1143,8 +1142,6 @@ skin = SubResource("Skin_4y54r")
 
 [node name="HolderR" type="Node3D" parent="Skeleton3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.186663, 0.071886, 0.364742)
-
-[node name="Glock19" parent="Skeleton3D/HolderR" instance=ExtResource("2_k7riq")]
 
 [node name="HolderL" type="Node3D" parent="Skeleton3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.181124, 0.0481568, 0.347148)
