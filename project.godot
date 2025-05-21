@@ -112,6 +112,10 @@ ultimate={
 3d_physics/layer_4="Anemys"
 3d_physics/layer_5="Bullets"
 
+[physics]
+
+common/physics_ticks_per_second=240
+
 [rendering]
 
 renderer/rendering_method="mobile"

@@ -9,6 +9,7 @@ signal used_ultimate()
 @onready var continuous_laser: Node3D = $Head/FirstPersonCamera/ContinuousLaser
 @onready var arms: Node3D = $Head/FirstPersonCamera/Arms
 
+var glock19 = preload("res://Scenes/GUNZ/glock_19.tscn")
 
 var gravity: float = 9.8
 const GRAV_AMP = 1.35
@@ -44,6 +45,7 @@ func _ready() -> void:
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	arms.equip(0, glock19)
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():

@@ -3,7 +3,7 @@ extends RayCast3D
 @onready var remote_transform: RemoteTransform3D = RemoteTransform3D.new()
 @onready var bullet_tracer: Node3D = $BulletTracer
 
-var speed : float = 70.0
+var speed : float = 90.0
 var damage: int = 20
 
 func _physics_process(delta: float) -> void:
@@ -26,7 +26,6 @@ func _physics_process(delta: float) -> void:
 		remote_transform.global_transform = global_transform
 		remote_transform.remote_path = remote_transform.get_path_to(self)
 		remote_transform.tree_exited.connect(cleanup)
-	
 
 func cleanup() ->void:
 	queue_free()
