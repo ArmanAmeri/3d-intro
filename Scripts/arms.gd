@@ -2,7 +2,15 @@ extends Node3D
 
 @onready var HR: Node3D = $Skeleton3D/HolderR
 @onready var HL: Node3D = $Skeleton3D/HolderL
+@onready var anim: AnimationPlayer = $AnimationPlayer
 
+func _process(delta: float) -> void:
+	var HR_item = HR.get_child(0)
+	if Input.is_action_pressed("shoot"):
+		if anim.is_playing():
+			return
+		anim.play("Armature|Shoot")
+		HR_item.shoot()
 
 func equip(hand: int, item) -> void:
 	var chosen_item = item.instantiate()

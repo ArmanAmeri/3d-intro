@@ -1,6 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://b4bepe0ixe4dn"]
+[gd_scene load_steps=15 format=4 uid="uid://b4bepe0ixe4dn"]
 
-[ext_resource type="PackedScene" uid="uid://to7yshq1m726" path="res://Scenes/machine_gun.tscn" id="1_nc13r"]
+[ext_resource type="PackedScene" uid="uid://cjrbre86epvys" path="res://Scenes/muzzle_flash.tscn" id="1_1tcpn"]
+[ext_resource type="Script" path="res://Scripts/Gunz/glock_19.gd" id="1_1xriu"]
+[ext_resource type="AudioStream" uid="uid://6hf60jmtvo8b" path="res://Assets/Gunz/weapons_asset_pack/sounds/cc0-385811__morganpurkis__single-pistol-gunshot-3.wav" id="2_sj32l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1xl4"]
 resource_name = "Frame"
@@ -319,11 +321,22 @@ bind/40/bone = -1
 bind/40/pose = Transform3D(0.00981049, -0.000903239, 0.00318052, 7.45012e-05, -0.00989591, -0.00304015, 0.00330545, 0.00290383, -0.00937118, 0.000194933, -0.000271794, -4.92005e-05)
 
 [node name="Glock19" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0179289, 0)
+script = ExtResource("1_1xriu")
 
 [node name="Glock19" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 2.83656, 0.976704, 0, -0.976704, 2.83656, 0.0598456, 0.0622859, 0.00512575)
 mesh = SubResource("ArrayMesh_jn06f")
 skin = SubResource("Skin_uyu7h")
 
-[node name="MachineGun" parent="Glock19" instance=ExtResource("1_nc13r")]
-transform = Transform3D(0.333333, 0, 0, 0, 0.333333, 0, 0, 0, 0.333333, 0.0767364, 0.0176967, 0.00276565)
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_sj32l")
+
+[node name="ShootPoint" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.288702, 0.1165, -0.00433894)
+
+[node name="MuzzleFlash" parent="ShootPoint" instance=ExtResource("1_1tcpn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

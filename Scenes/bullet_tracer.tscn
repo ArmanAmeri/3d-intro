@@ -16,6 +16,7 @@ transparency = 1
 cull_mode = 2
 albedo_texture = SubResource("GradientTexture2D_d3xij")
 emission_enabled = true
+emission_energy_multiplier = 2.0
 emission_texture = SubResource("GradientTexture2D_d3xij")
 
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_qmxag"]

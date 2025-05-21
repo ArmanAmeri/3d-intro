@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://oi8sct5g8fi5" path="res://Scenes/game_ui.tscn" id="3_be6b2"]
 [ext_resource type="PackedScene" uid="uid://bequanpoqt731" path="res://Scenes/spawner.tscn" id="4_m8c50"]
 [ext_resource type="PackedScene" uid="uid://b10gbr3kiakqt" path="res://Scenes/drone_enemy.tscn" id="5_ckklr"]
-[ext_resource type="PackedScene" uid="uid://dmk4gixgxrcm5" path="res://Scenes/world.tscn" id="5_fqf3k"]
+[ext_resource type="PackedScene" uid="uid://bnee2dpncngq5" path="res://Scenes/world.tscn" id="5_fqf3k"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ddp6h"]
 vertices = PackedVector3Array(-499.5, 0.5, -499.5, -499.5, 0.5, 499.5, 499.5, 0.5, 499.5, 499.5, 0.5, -499.5)

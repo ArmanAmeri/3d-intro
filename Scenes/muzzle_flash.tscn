@@ -25,7 +25,7 @@ size = Vector2(0.3, 0.3)
 
 [node name="MuzzleFlash" type="GPUParticles3D"]
 emitting = false
-amount = 1
+amount = 2
 lifetime = 0.01
 one_shot = true
 local_coords = true
