@@ -26,9 +26,7 @@ func expand_domain():
 		malevolent_line.play()
 		light.light_energy = 0.3
 		domain_can_expand = false
-		player.speed = 0
-		await get_tree().create_timer(8).timeout
-		player.speed = player.WALK_SPEED
+		await get_tree().create_timer(7).timeout
 		anim_p.play("domain_expansion")
 		stay_timer.start(domain_stay_time)
 		cooldown_timer.start(domain_stay_time + domain_cooldown)
