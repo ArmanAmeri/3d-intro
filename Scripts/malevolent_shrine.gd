@@ -35,7 +35,7 @@ func expand_domain():
 		Signalbus.shake_screen.emit(0.4, domain_stay_time - 2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jihlc"]
 [ext_resource type="Script" path="res://Scripts/first_person_camera.gd" id="2_fypxa"]
-[ext_resource type="PackedScene" path="res://Scenes/arms.tscn" id="5_5xt66"]
-[ext_resource type="PackedScene" path="res://Scenes/malevolent_shrine.tscn" id="5_38sfw"]
+[ext_resource type="PackedScene" uid="uid://bwx3sw7fknglh" path="res://Scenes/armsv2.tscn" id="5_7iqij"]
+[ext_resource type="PackedScene" uid="uid://b55wq4ysip0tv" path="res://Scenes/malevolent_shrine.tscn" id="5_38sfw"]
 [ext_resource type="PackedScene" uid="uid://bqnavtcia3xna" path="res://Scenes/continuous_laser.tscn" id="5_53670"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]
@@ -43,7 +43,7 @@ script = ExtResource("2_fypxa")
 [node name="ContinuousLaser" parent="Head/FirstPersonCamera" instance=ExtResource("5_53670")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1.22904, -1.92068)
 
-[node name="Arms" parent="Head/FirstPersonCamera" instance=ExtResource("5_5xt66")]
+[node name="Arms" parent="Head/FirstPersonCamera" instance=ExtResource("5_7iqij")]
 
 [node name="DebugCamera" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 0.863572, 0.504226, 0, -0.504226, 0.863572, 0, 1.8298, 3.3043)
