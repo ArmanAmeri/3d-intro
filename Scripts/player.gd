@@ -90,7 +90,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("shoot"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	if Input.is_action_just_pressed("Attack1"):
+	if Input.is_action_just_pressed("skill1"):
 		pass
 	
 	if Input.is_action_just_pressed("Special"):
