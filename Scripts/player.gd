@@ -8,6 +8,7 @@ signal used_ultimate()
 @onready var camera = $Head/FirstPersonCamera
 @onready var continuous_laser: Node3D = $Head/FirstPersonCamera/ContinuousLaser
 @onready var arms: Node3D = $Head/FirstPersonCamera/Arms
+@onready var malevolent_sound: AudioStreamPlayer3D = $MalevolentSound
 
 var glock19 = preload("res://Scenes/GUNZ/glock_19.tscn")
 
@@ -96,6 +97,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("ultimate"):
 		used_ultimate.emit()
+		print("pressed B")
 		#make domain visible here
 	
 	# FOV
