@@ -154,3 +154,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.618382, 0)
 
 [node name="World2" parent="." instance=ExtResource("5_fqf3k")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.06649, -8.62258)
+
+[node name="TempTestCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0265782, 0.999647, 0, -0.999647, 0.0265782, 0, 38.5756, 0)

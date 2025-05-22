@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bqnavtcia3xna"]
+[gd_scene load_steps=21 format=3 uid="uid://cvhekopx3454x"]
 
 [ext_resource type="Script" path="res://Scripts/continuous_laser.gd" id="1_qfoja"]
 [ext_resource type="Texture2D" uid="uid://bfbgo75vrb4na" path="res://Assets/Textures/texturetest.png" id="2_gby0e"]

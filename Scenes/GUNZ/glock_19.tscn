@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://b4bepe0ixe4dn"]
 
-[ext_resource type="PackedScene" path="res://Scenes/muzzle_flash.tscn" id="1_1tcpn"]
+[ext_resource type="PackedScene" uid="uid://cjrbre86epvys" path="res://Scenes/muzzle_flash.tscn" id="1_1tcpn"]
 [ext_resource type="Script" path="res://Scripts/Gunz/glock_19.gd" id="1_1xriu"]
 [ext_resource type="AudioStream" uid="uid://6hf60jmtvo8b" path="res://Assets/Gunz/weapons_asset_pack/sounds/cc0-385811__morganpurkis__single-pistol-gunshot-3.wav" id="2_sj32l"]
 

@@ -9,20 +9,26 @@ extends Node3D
 @onready var stay_timer: Timer = $Timers/StayTimer
 @onready var cooldown_timer: Timer = $Timers/CooldownTimer
 @onready var player: Player = $".."
+@onready var fpcamera = get_tree().get_first_node_in_group("fpcamera")
 @onready var light = get_tree().get_first_node_in_group("light")
 @onready var malevolent_line: AudioStreamPlayer = $MalevolentLine
 
 var domain_can_expand: bool = true
+var distance_behind := -13.0
 
 func _ready() -> void:
 	top_level = false
-	visible = false
+	#visible = false
 	player.used_ultimate.connect(expand_domain)
+
+func _process(_delta: float) -> void:
+	if top_level == false:
+		update_position()
 
 func expand_domain():
 	print("button pressed")
 	if domain_can_expand:
-		position = Vector3(player.position.x, player.position.y, player.position.z + 13)
+		update_position()
 		malevolent_line.play()
 		light.light_energy = 0.3
 		domain_can_expand = false
@@ -33,10 +39,6 @@ func expand_domain():
 		print("Stay timer time: ", stay_timer.wait_time)
 		await get_tree().create_timer(2).timeout
 		Signalbus.shake_screen.emit(0.4, domain_stay_time - 2)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
 
 func _on_stay_timer_timeout() -> void:
@@ -60,6 +62,28 @@ func _on_domain_hitbox_area_entered(area: Area3D) -> void:
 				continue 
 			else: break
 
+func update_position():
+	if not player or not fpcamera:
+		return
+
+	# Step 1: Get the fpcamera's *global yaw* (horizontal angle only)
+	var cam_basis = fpcamera.global_transform.basis
+	var cam_forward = cam_basis.z
+
+	# Flatten and normalize it to remove any vertical pitch
+	cam_forward.y = 0
+	cam_forward = cam_forward.normalized()
+
+	# Step 2: Compute follower's target position *behind* the player, based on fpcamera yaw
+	var player_pos = player.global_transform.origin
+	var target_pos = player_pos - cam_forward * distance_behind
+	target_pos.y = player_pos.y  # Keep follower level with the player
+
+	global_transform.origin = target_pos
+
+	# Step 3: Make follower face same horizontal direction as the fpcamera (no pitch)
+	var look_target = target_pos + cam_forward
+	look_at(look_target, Vector3.UP)
 
 func _on_domain_hitbox_area_exited(area: Area3D) -> void:
 	if is_instance_valid(area):
