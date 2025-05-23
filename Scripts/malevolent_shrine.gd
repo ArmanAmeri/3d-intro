@@ -34,10 +34,6 @@ func expand_domain():
 		await get_tree().create_timer(2).timeout
 		Signalbus.shake_screen.emit(0.4, domain_stay_time - 2)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func _on_stay_timer_timeout() -> void:
 	anim_p.play("domain_reduction")

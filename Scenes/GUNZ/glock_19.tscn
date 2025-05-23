@@ -1,8 +1,17 @@
-[gd_scene load_steps=15 format=4 uid="uid://b4bepe0ixe4dn"]
+[gd_scene load_steps=19 format=4 uid="uid://b4bepe0ixe4dn"]
 
 [ext_resource type="PackedScene" uid="uid://cjrbre86epvys" path="res://Scenes/muzzle_flash.tscn" id="1_1tcpn"]
 [ext_resource type="Script" path="res://Scripts/Gunz/glock_19.gd" id="1_1xriu"]
+[ext_resource type="Script" path="res://Resources/skill_data.gd" id="2_aesm6"]
 [ext_resource type="AudioStream" uid="uid://6hf60jmtvo8b" path="res://Assets/Gunz/weapons_asset_pack/sounds/cc0-385811__morganpurkis__single-pistol-gunshot-3.wav" id="2_sj32l"]
+[ext_resource type="AudioStream" uid="uid://d3vi2o7bmt2yc" path="res://Assets/Gunz/weapons_asset_pack/sounds/cc0-276959__gfl7__pistol-reload-sound.mp3" id="3_0khex"]
+[ext_resource type="AudioStream" uid="uid://0x068c3trgi7" path="res://Assets/Gunz/weapons_asset_pack/sounds/cc0-431533__supersound23__ballisong-click.wav" id="4_nf41n"]
+
+[sub_resource type="Resource" id="Resource_uftqg"]
+script = ExtResource("2_aesm6")
+is_limited = true
+resource_max = 0
+is_reusable = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1xl4"]
 resource_name = "Frame"
@@ -323,6 +332,7 @@ bind/40/pose = Transform3D(0.00981049, -0.000903239, 0.00318052, 7.45012e-05, -0
 [node name="Glock19" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0179289, 0)
 script = ExtResource("1_1xriu")
+skill_data = SubResource("Resource_uftqg")
 
 [node name="Glock19" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 2.83656, 0.976704, 0, -0.976704, 2.83656, 0.0598456, 0.0622859, 0.00512575)
@@ -332,11 +342,27 @@ skin = SubResource("Skin_uyu7h")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="ShootAudio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.281891, 0.110961, 0)
 stream = ExtResource("2_sj32l")
+
+[node name="ReloadAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_0khex")
+
+[node name="NoAmmoSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.281885, 0.115441, 0)
+stream = ExtResource("4_nf41n")
+pitch_scale = 0.5
 
 [node name="ShootPoint" type="Marker3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.288702, 0.1165, -0.00433894)
 
 [node name="MuzzleFlash" parent="ShootPoint" instance=ExtResource("1_1tcpn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="AmmoDisplay" type="Label3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.0796738, 0.12236, -0.00576509)
+pixel_size = 0.0005
+text = "
+"
+outline_size = 5

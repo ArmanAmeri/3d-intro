@@ -45,7 +45,7 @@ func _ready() -> void:
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	#arms.equip(0, glock19)
+	arms.equip(glock19)
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -87,10 +87,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("action1"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	if Input.is_action_just_pressed("Special"):
+	if Input.is_action_just_pressed("special"):
 		used_special.emit()
 		continuous_laser.visible = true
 	
