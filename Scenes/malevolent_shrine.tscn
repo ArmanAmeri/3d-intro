@@ -402,7 +402,7 @@ pitch_scale = 0.95
 
 [node name="MalevolentCuts" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_fosxl")
-volume_db = 9.0
+volume_db = 3.0
 
 [connection signal="area_entered" from="DomainHitbox" to="." method="_on_domain_hitbox_area_entered"]
 [connection signal="area_exited" from="DomainHitbox" to="." method="_on_domain_hitbox_area_exited"]

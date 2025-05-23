@@ -10,6 +10,7 @@ signal used_ultimate()
 @onready var arms: Node3D = $Head/FirstPersonCamera/Arms
 
 var glock19 = preload("res://Scenes/GUNZ/glock_19.tscn")
+var dismantle = preload("res://Characters/Sukuna/Attacks/dismantle.tscn")
 
 var gravity: float = 9.8
 const GRAV_AMP = 1.35
@@ -91,7 +92,8 @@ func _physics_process(delta):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	if Input.is_action_just_pressed("skill1"):
-		pass
+		var projectile = dismantle.instantiate()
+		camera.add_child(projectile)
 	
 	if Input.is_action_just_pressed("Special"):
 		used_special.emit()
@@ -141,7 +143,6 @@ func die() -> void:
 	# Add it to the scene tree
 	get_tree().root.add_child(death_overlay)
 	
-
 
 
 func _unhandled_input(event):
