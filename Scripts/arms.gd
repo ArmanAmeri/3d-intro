@@ -1,22 +1,32 @@
 extends Node3D
 
-@onready var HR: Node3D = $Skeleton3D/HolderR
-@onready var HL: Node3D = $Skeleton3D/HolderL
+@onready var H: Node3D = $Skeleton3D/Holder
+
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 func _process(_delta: float) -> void:
-	var HR_item = HR.get_child(0)
-	if Input.is_action_pressed("shoot"):
+	var H_item = H.get_child(0)
+	if Input.is_action_pressed("action1"):
 		if anim.is_playing():
 			return
-		anim.play("Armature|Shoot")
-		HR_item.shoot()
+		if H_item.ammo != 0:
+			anim.play("Armature|Shoot")
+			H_item.shoot()
+		else:
+			H_item.no_ammo()
+	if Input.is_action_pressed("reload"):
+		if anim.is_playing():
+			return
+		anim.play("Armature|Reload")
+		H_item.reload()
 
-func equip(hand: int, item) -> void:
+func equip(item) -> void:
 	var chosen_item = item.instantiate()
-	if hand == 0:
-		HR.add_child(chosen_item)
-	elif hand == 1:
-		HL.add_child(chosen_item)
+	if item:
+		if H.get_child_count() <= 0:
+			H.add_child(chosen_item)
+		else:
+			var old_item = H.get_child(0)
+			H.remove_child(old_item)
 	else:
-		print("NON EXISTENT HAND, 0 = R, 1 = L")
+		print("NO ITEM SELECTED FOR HOLDER")

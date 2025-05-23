@@ -144,7 +144,6 @@ shadow_enabled = true
 [node name="Spawner" parent="Entities" instance=ExtResource("4_m8c50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.5631, -40.0369)
 spawn_scene = ExtResource("5_ckklr")
-spawn_interval = 1.0
 infinite_spawn = true
 
 [node name="Player" parent="Entities" instance=ExtResource("1_al1kw")]
