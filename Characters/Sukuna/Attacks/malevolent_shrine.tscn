@@ -255,3 +255,4 @@ libraries = {
 
 [connection signal="area_entered" from="DomainHitbox" to="." method="_on_domain_hitbox_area_entered"]
 [connection signal="area_exited" from="DomainHitbox" to="." method="_on_domain_hitbox_area_exited"]
+[connection signal="timeout" from="Timers/CooldownTimer" to="." method="_on_cooldown_timeout"]

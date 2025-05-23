@@ -44,4 +44,4 @@ func _on_domain_hitbox_area_exited(area: Area3D) -> void:
 
 
 func _on_cooldown_timeout() -> void:
-	pass # Replace with function body.
+	domain_can_expand = true
