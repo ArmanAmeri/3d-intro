@@ -1,0 +1,257 @@
+[gd_scene load_steps=16 format=3 uid="uid://pbj6f0vx00io"]
+
+[ext_resource type="Script" path="res://Characters/Sukuna/Attacks/malevolent_shrine.gd" id="1_6qpab"]
+[ext_resource type="PackedScene" uid="uid://cp6giev3w1whq" path="res://Assets/3D Models/malevolent_shrine__jujutsu_kaisen.glb" id="1_78x3y"]
+[ext_resource type="AudioStream" uid="uid://c8tv5c2atorqu" path="res://Assets/Sound/Music/Malevolent Shrine Song.mp3" id="3_fslba"]
+[ext_resource type="AudioStream" uid="uid://bps4w1qnqlbf6" path="res://Assets/Sound/SFX/Sukuna Domain Slices.mp3" id="4_0cuxb"]
+[ext_resource type="AudioStream" uid="uid://c2turdnbjaqeg" path="res://Assets/Sound/SFX/Sukuna's Domain Expansion sound effect.mp3" id="5_sfa6w"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xtvhj"]
+height = 60.0
+radius = 45.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dfw0n"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+emission_shape_scale = Vector3(40, 40, 40)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = 1.07288e-05
+angle_max = 360.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_xhjlt"]
+offsets = PackedFloat32Array(0.140351, 0.412281, 0.614035, 0.912281)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cayev"]
+gradient = SubResource("Gradient_xhjlt")
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1tw2y"]
+gradient = SubResource("Gradient_xhjlt")
+fill_to = Vector2(1, 0.0168539)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpfpy"]
+albedo_texture = SubResource("GradientTexture2D_cayev")
+emission_enabled = true
+emission_energy_multiplier = 71.0
+emission_texture = SubResource("GradientTexture2D_1tw2y")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_1wifs"]
+material = SubResource("StandardMaterial3D_kpfpy")
+radius = 0.05
+height = 15.0
+
+[sub_resource type="Animation" id="Animation_prdq4"]
+resource_name = "ExpandDomain"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_Scene:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(7, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -14, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/MalevolentLine:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Audio/MalevolentMusic:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Audio/MalevolentCuts:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(9.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CutParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(9.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DomainHitbox/CollisionShape3D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(9.66667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qtou7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_Scene:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -14, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/MalevolentLine:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Audio/MalevolentMusic:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Audio/MalevolentCuts:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CutParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DomainHitbox/CollisionShape3D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qdtgf"]
+_data = {
+"ExpandDomain": SubResource("Animation_prdq4"),
+"RESET": SubResource("Animation_qtou7")
+}
+
+[node name="MalevolentShrine" type="Node3D"]
+script = ExtResource("1_6qpab")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_78x3y")]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, -14, 0)
+
+[node name="DomainHitbox" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DomainHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.04996, 0)
+shape = SubResource("CylinderShape3D_xtvhj")
+disabled = true
+
+[node name="CutParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.4704, 0)
+emitting = false
+amount = 1000
+lifetime = 0.5
+speed_scale = 3.0
+visibility_aabb = AABB(-400, -400, -400, 500, 500, 500)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_dfw0n")
+draw_pass_1 = SubResource("SphereMesh_1wifs")
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="MalevolentMusic" type="AudioStreamPlayer3D" parent="Audio"]
+stream = ExtResource("3_fslba")
+volume_db = 80.0
+
+[node name="MalevolentCuts" type="AudioStreamPlayer3D" parent="Audio"]
+stream = ExtResource("4_0cuxb")
+volume_db = 3.0
+
+[node name="MalevolentLine" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_sfa6w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qdtgf")
+}
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="CooldownTimer" type="Timer" parent="Timers"]
+
+[connection signal="area_entered" from="DomainHitbox" to="." method="_on_domain_hitbox_area_entered"]
+[connection signal="area_exited" from="DomainHitbox" to="." method="_on_domain_hitbox_area_exited"]

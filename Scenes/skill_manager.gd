@@ -2,7 +2,7 @@ extends Node
 
 
 #Sukuna skills
-var dismantle = preload("res://Characters/Sukuna/Attacks/dismantle.tscn")
+var dismantle = preload("res://Characters/Sukuna/Attacks/dismantle_skill.tscn")
 var cleave
 var dismantle_barrage
 var aoe_cleave

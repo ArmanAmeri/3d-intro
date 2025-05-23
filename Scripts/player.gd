@@ -46,7 +46,7 @@ func _ready() -> void:
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	arms.equip(0, glock19)
+	arms.equip(glock19)
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
