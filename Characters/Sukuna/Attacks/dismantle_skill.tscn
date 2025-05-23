@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c87ds62628eju"]
+
+[ext_resource type="Script" path="res://Characters/Sukuna/Attacks/dismantle_skill.gd" id="1_7b8se"]
+
+[node name="DismantleSkill" type="Node3D"]
+script = ExtResource("1_7b8se")
