@@ -3,48 +3,52 @@ extends Node3D
 @onready var muzzle_flash: GPUParticles3D = $ShootPoint/MuzzleFlash
 @onready var shoot_point: Marker3D = $ShootPoint
 @onready var ammo_display: Label3D = $AmmoDisplay
-@onready var shoot_audio: AudioStreamPlayer3D = $ShootAudio
 @onready var reload_audio: AudioStreamPlayer3D = $ReloadAudio
 @onready var no_ammo_sound: AudioStreamPlayer3D = $NoAmmoSound
+@onready var audio_shoot: AudioRandomizer = $AudioShoot
 
-@export var skill_data: SkillData
+
+@export var skilldata: SkillData
+
 
 const BULLET = preload("res://Scenes/bullet.tscn")
 
-const AMMO_MAX = 12
-
-var ammo: int
-var ammo_empty: bool = false
-
 func _ready() -> void:
-	ammo = AMMO_MAX
-	ammo_display.text = str(ammo)
+	skilldata.resource = skilldata.resource_max
+	ammo_display.text = str(skilldata.resource)
 
 func shoot() -> void:
-	if ammo_empty:
+	if skilldata.resource_empty:
 		return
 	
 	var projectile = BULLET.instantiate()
 	add_child(projectile)
 	projectile.global_transform = shoot_point.global_transform
 	muzzle_flash.emitting = true
-	shoot_audio.play()
+	audio_shoot.play_sound()
 	
-	if ammo >= 1:
-		ammo -= 1
+	if skilldata.resource >= 1:
+		skilldata.resource -= 1
 	else:
-		ammo_empty = true
+		skilldata.resource_empty = true
+		no_resource()
 		print("Ammo empty")
 	
-	ammo_display.text = str(ammo)
+	ammo_display.text = str(skilldata.resource)
 	
 
 func reload() -> void:
+	if PlayerInfo.current_magazines <= 0:
+		return
 	reload_audio.play()
-	ammo_empty = false
-	ammo = AMMO_MAX
-	ammo_display.text = str(ammo)
+	skilldata.resource_empty = false
+	skilldata.resource = skilldata.resource_max
+	ammo_display.text = str(skilldata.resource)
+	PlayerInfo.current_magazines -= 1
+	Signalbus.magazine_change.emit(PlayerInfo.current_magazines)
 
 
-func no_ammo() -> void:
+func no_resource() -> void:
+	if no_ammo_sound.playing:
+		return
 	no_ammo_sound.play()

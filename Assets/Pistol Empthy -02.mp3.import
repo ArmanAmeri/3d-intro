@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ceyqak6xsy548"
+path="res://.godot/imported/Pistol Empthy -02.mp3-2153b53beb65977a4929395fa4ff77f7.mp3str"
+
+[deps]
+
+source_file="res://Assets/Pistol Empthy -02.mp3"
+dest_files=["res://.godot/imported/Pistol Empthy -02.mp3-2153b53beb65977a4929395fa4ff77f7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

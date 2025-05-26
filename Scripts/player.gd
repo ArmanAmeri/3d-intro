@@ -45,22 +45,20 @@ func _ready() -> void:
 	hp = hp_max
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	speed = WALK_SPEED
 	
-	arms.equip(0, glock19)
+	arms.equip(glock19)
+	
+	Signalbus.k_jump.connect(on_jump)
+	Signalbus.k_sprint.connect(on_sprint)
+
+
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta * GRAV_AMP
 	
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	
-	# Handle Sprint.
-	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
-	else:
-		speed = WALK_SPEED
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("a", "d", "w", "s")
@@ -85,17 +83,13 @@ func _physics_process(delta):
 	arms.transform.origin = _headbob(a_bob, "arms")
 	
 	#Mouse Lock
-	if Input.is_action_just_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
-	if Input.is_action_just_pressed("shoot"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 	
 	if Input.is_action_just_pressed("skill1"):
 		var projectile = dismantle.instantiate()
 		camera.add_child(projectile)
 	
-	if Input.is_action_just_pressed("Special"):
+	if Input.is_action_just_pressed("special"):
 		used_special.emit()
 		continuous_laser.visible = true
 	
@@ -162,3 +156,15 @@ func _headbob(time, type: String) -> Vector3:
 		pos.y = sin(time * BOB_FREQ ) * A_BOB_AMP
 		pos.x = cos(time * BOB_FREQ / 2) * A_BOB_AMP
 	return pos
+
+func on_jump() -> void:
+	# Handle Jump.
+	if is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		
+func on_sprint() -> void:
+	# Handle Sprint.
+	if Input.is_action_pressed("sprint"):
+		speed = SPRINT_SPEED#aæøfdejoæeiafvuhpdjoækcmanvjdsb hlajfewdoækmLAVBFJSLIHØAJDÆOKPSACLMDKV-NJBKUHIOFJP
+	else:
+		speed = WALK_SPEED

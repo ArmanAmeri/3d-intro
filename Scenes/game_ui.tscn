@@ -1,64 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://oi8sct5g8fi5"]
+[gd_scene load_steps=15 format=3 uid="uid://oi8sct5g8fi5"]
 
 [ext_resource type="Script" path="res://Scripts/game_ui.gd" id="1_syeqx"]
 [ext_resource type="Texture2D" uid="uid://codd6mtrjkk5p" path="res://Assets/Crosshair.png" id="2_c4x62"]
 [ext_resource type="Theme" uid="uid://bx0capsjjpfch" path="res://Assets/Themes/DebugPanel.tres" id="3_e1a7q"]
 [ext_resource type="Script" path="res://Scripts/debug_interface.gd" id="4_segba"]
+[ext_resource type="Script" path="res://Scripts/health.gd" id="5_oyyab"]
+[ext_resource type="Texture2D" uid="uid://0h6heko3137l" path="res://Assets/UI/HealthBar2.png" id="5_vxh1o"]
+[ext_resource type="Texture2D" uid="uid://3xonkqrnyxh8" path="res://Assets/UI/HealthBar1.png" id="6_drub2"]
+[ext_resource type="Texture2D" uid="uid://d21dlt45nxn5j" path="res://Assets/UI/HealthBar3.png" id="6_qm7rb"]
+[ext_resource type="Texture2D" uid="uid://cp564gxby6wew" path="res://Assets/UI/HealthBar4.png" id="7_iso83"]
+[ext_resource type="Texture2D" uid="uid://bbcidhqd7m5d7" path="res://Assets/UI/Ammo.png" id="10_74xfx"]
+[ext_resource type="Script" path="res://Scripts/ui_magazine.gd" id="10_eivjn"]
+[ext_resource type="Script" path="res://Scripts/class_ui.gd" id="10_nl5pj"]
+[ext_resource type="Script" path="res://Scripts/console.gd" id="13_jh5ge"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smus2"]
-bg_color = Color(0.36, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkhq3"]
-bg_color = Color(0, 0.633333, 1, 1)
-
-[sub_resource type="Theme" id="Theme_wlue0"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_smus2")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_pkhq3")
-
-[sub_resource type="LabelSettings" id="LabelSettings_671p4"]
-font_size = 24
-font_color = Color(0.23, 1, 0.9615, 1)
-outline_size = 10
-outline_color = Color(0, 0.469333, 0.88, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_cckuk"]
-font_size = 64
+[sub_resource type="LabelSettings" id="LabelSettings_4w881"]
+font_size = 32
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_syeqx")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -250.0
-offset_top = -103.0
-offset_right = 250.0
-offset_bottom = -76.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = SubResource("Theme_wlue0")
-value = 100.0
-show_percentage = false
-
-[node name="HpAmountLabel" type="Label" parent="ProgressBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "100"
-label_settings = SubResource("LabelSettings_671p4")
-horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -86,20 +46,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_c4x62")
 
-[node name="EnemyCount" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -50.0
-offset_right = 50.0
-offset_bottom = 100.0
-grow_horizontal = 2
-pivot_offset = Vector2(50, 0)
-text = "0"
-label_settings = SubResource("LabelSettings_cckuk")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="DebugInterface" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
 offset_left = 15.0
@@ -114,3 +60,165 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DebugInterface/MarginContainer"]
 layout_mode = 2
+
+[node name="PlayerVitals" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Health" type="Control" parent="PlayerVitals"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_oyyab")
+max_value = 100
+
+[node name="DamageBar" type="TextureProgressBar" parent="PlayerVitals/Health"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -296.0
+offset_right = 108.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+fill_mode = 4
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
+radial_center_offset = Vector2(0, 128)
+texture_under = ExtResource("6_qm7rb")
+texture_over = ExtResource("7_iso83")
+texture_progress = ExtResource("5_vxh1o")
+
+[node name="HealthBar" type="TextureProgressBar" parent="PlayerVitals/Health"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -296.0
+offset_right = 108.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+fill_mode = 4
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
+radial_center_offset = Vector2(0, 128)
+texture_progress = ExtResource("6_drub2")
+
+[node name="ClassUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("10_nl5pj")
+
+[node name="AverageAmericanUI" type="Control" parent="ClassUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Magazine" type="Control" parent="ClassUI/AverageAmericanUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 440.0
+offset_top = -10.0
+offset_right = 440.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+script = ExtResource("10_eivjn")
+
+[node name="AmmoImage" type="TextureRect" parent="ClassUI/AverageAmericanUI/Magazine"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("10_74xfx")
+
+[node name="MagazineCount" type="Label" parent="ClassUI/AverageAmericanUI/Magazine"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.71
+offset_top = -100.0
+offset_right = 17.29
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "10"
+label_settings = SubResource("LabelSettings_4w881")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Console" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("13_jh5ge")
+
+[node name="Panel" type="Panel" parent="Console"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="Console/Panel"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 250.0
+
+[node name="LineEdit" type="LineEdit" parent="Console/Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -45.0
+offset_right = 400.0
+grow_vertical = 0
