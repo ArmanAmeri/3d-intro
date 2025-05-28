@@ -1,14 +1,11 @@
 extends CharacterBody3D
 class_name Player
 
-signal used_ultimate()
 
 @onready var head = $Head
 @onready var camera = $Head/FirstPersonCamera
 @onready var arms: Node3D = $Head/FirstPersonCamera/Arms
 
-var glock19 = preload("res://Scenes/GUNZ/glock_19.tscn")
-var dismantle = preload("res://Characters/Sukuna/Attacks/dismantle.tscn")
 
 var gravity: float = 9.8
 const GRAV_AMP = 1.35
@@ -53,9 +50,6 @@ func _ready() -> void:
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	speed = WALK_SPEED
-
-	
-	arms.equip(glock19)
 	
 	Signalbus.k_jump.connect(on_jump)
 
@@ -103,17 +97,6 @@ func _physics_process(delta):
 	a_bob += delta * velocity.length() * float(is_on_floor())
 	arms.transform.origin = _headbob(a_bob, "arms")
 	
-	#Mouse Lock
-	
-	if Input.is_action_just_pressed("skill1"):
-		var projectile = dismantle.instantiate()
-		camera.add_child(projectile)
-	
-
-	
-	if Input.is_action_just_pressed("ultimate"):
-		used_ultimate.emit()
-		#make domain visible here
 	
 	# FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)

@@ -34,6 +34,11 @@ grow_vertical = 2
 layout_mode = 2
 text = "PLAY"
 
+[node name="CharacterMenu" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "CHARACTERS
+"
+
 [node name="Options" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "OPTIONS"
@@ -43,5 +48,6 @@ layout_mode = 2
 text = "QUIT GAME"
 
 [connection signal="pressed" from="Panel/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/CharacterMenu" to="." method="_on_character_menu_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Quit Game" to="." method="_on_quit_game_pressed"]

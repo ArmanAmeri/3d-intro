@@ -7,14 +7,19 @@ extends Node3D
 var H_item
 
 func _process(_delta: float) -> void:
-	H_item = H.get_child(0)
-	
-	if H_item.skilldata.is_limited:
-		run_limited()
-	elif H_item.skilldata.is_reusable:
-		run_reusable()
+	if H.get_child_count() > 0:
+		H_item = H.get_child(0)
+		# Proceed with using H_item
 	else:
-		print("No item in Hand")
+		H_item = null
+		# Handle the case where there is no child
+	if H_item:
+		if H_item.skilldata.is_limited:
+			run_limited()
+		elif H_item.skilldata.is_reusable:
+			run_reusable()
+		else:
+			print("No item in Hand")
 
 func equip(item) -> void:
 	var chosen_item = item.instantiate()

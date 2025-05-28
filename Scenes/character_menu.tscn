@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://8y084nlambyu"]
+
+[ext_resource type="FontFile" uid="uid://dlivt7ob7uit" path="res://Assets/Fonts/CloisterBlack.ttf" id="1_5nbpb"]
+[ext_resource type="Script" path="res://Scripts/character_menu.gd" id="1_yvh07"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssxv7"]
+bg_color = Color(0, 0.699228, 0.587754, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.587833, 0.494099, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6g2ej"]
+bg_color = Color(0.468893, 0.666315, 0.349748, 1)
+
+[sub_resource type="Theme" id="Theme_b41eo"]
+Button/constants/h_separation = 10
+Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("1_5nbpb")
+Button/styles/normal = SubResource("StyleBoxFlat_ssxv7")
+Panel/styles/panel = SubResource("StyleBoxFlat_6g2ej")
+
+[node name="CharacterMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_b41eo")
+script = ExtResource("1_yvh07")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -157.0
+offset_right = 52.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back
+"
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -651.5
+offset_top = 200.0
+offset_right = 651.5
+offset_bottom = 400.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 100
+columns = 4
+
+[node name="Sukuna" type="Button" parent="Panel/GridContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+text = "Sukuna"
+
+[node name="AverageAmerican" type="Button" parent="Panel/GridContainer"]
+layout_mode = 2
+text = "AverageAmerican"
+
+[node name="FireMage" type="Button" parent="Panel/GridContainer"]
+layout_mode = 2
+text = "FireMage"
+
+[node name="TimeLord" type="Button" parent="Panel/GridContainer"]
+layout_mode = 2
+text = "TimeLord"
+
+[connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/Sukuna" to="." method="_on_sukuna_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/AverageAmerican" to="." method="_on_average_american_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/FireMage" to="." method="_on_fire_mage_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/TimeLord" to="." method="_on_time_lord_pressed"]

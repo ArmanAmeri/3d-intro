@@ -19,7 +19,6 @@ var distance_behind := -13.0
 func _ready() -> void:
 	top_level = false
 	visible = false
-	player.used_ultimate.connect(expand_domain)
 
 func _process(_delta: float) -> void:
 	if top_level == false:
