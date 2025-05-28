@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jihlc"]
 [ext_resource type="Script" path="res://Scripts/first_person_camera.gd" id="2_fypxa"]
-[ext_resource type="PackedScene" uid="uid://unuxevls1pct" path="res://Scenes/armsv2.tscn" id="4_342bu"]
-[ext_resource type="PackedScene" uid="uid://c6kl6voo8qeon" path="res://Scenes/malevolent_shrine.tscn" id="5_38sfw"]
-[ext_resource type="PackedScene" uid="uid://cvhekopx3454x" path="res://Scenes/continuous_laser.tscn" id="5_53670"]
+[ext_resource type="PackedScene" uid="uid://bwx3sw7fknglh" path="res://Scenes/armsv2.tscn" id="4_342bu"]
+[ext_resource type="PackedScene" uid="uid://b55wq4ysip0tv" path="res://Scenes/malevolent_shrine.tscn" id="5_38sfw"]
+[ext_resource type="PackedScene" uid="uid://bqnavtcia3xna" path="res://Scenes/continuous_laser.tscn" id="5_53670"]
 [ext_resource type="Script" path="res://Scenes/skill_manager.gd" id="6_6up74"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]

@@ -8,7 +8,7 @@ extends Node3D
 @onready var anim_p: AnimationPlayer = $AnimationPlayer
 @onready var stay_timer: Timer = $Timers/StayTimer
 @onready var cooldown_timer: Timer = $Timers/CooldownTimer
-@onready var player: Player = $".."
+@onready var player: Player = get_tree().get_first_node_in_group("player")
 @onready var fpcamera = get_tree().get_first_node_in_group("fpcamera")
 @onready var light = get_tree().get_first_node_in_group("light")
 @onready var malevolent_line: AudioStreamPlayer = $MalevolentLine
@@ -29,10 +29,8 @@ func expand_domain():
 	print("button pressed")
 	if domain_can_expand:
 		update_position()
-		malevolent_line.play()
 		light.light_energy = 0.3
 		domain_can_expand = false
-		await get_tree().create_timer(7).timeout
 		anim_p.play("domain_expansion")
 		stay_timer.start(domain_stay_time)
 		cooldown_timer.start(domain_stay_time + domain_cooldown)
