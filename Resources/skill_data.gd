@@ -23,9 +23,9 @@ func init_cooldown_timer(node_self: Node3D) -> void:
 	cooldown_timer.timeout.connect(on_timeout)
 	node_self.add_child(cooldown_timer)
 
-func start_cooldown_timer() -> void:
+func start_cooldown_timer(cooldown_time: float) -> void:
 	if cooldown_timer:
-		cooldown_timer.start()
+		cooldown_timer.start(cooldown_time)
 		on_cooldown = true
 
 

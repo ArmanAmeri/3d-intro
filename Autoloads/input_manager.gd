@@ -16,9 +16,11 @@ func _process(_delta: float) -> void:
 		
 	
 		if Input.is_action_pressed("action1"):
-			Signalbus.k_action1.emit()
+			#Signalbus.k_action1.emit()
+			pass
 		if Input.is_action_pressed("action2"):
-			Signalbus.k_action2.emit()
+			#Signalbus.k_action2.emit()
+			pass
 		if Input.is_action_pressed("jump"):
 			Signalbus.k_jump.emit()
 		if Input.is_action_pressed("sprint"):

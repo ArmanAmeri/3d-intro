@@ -23,9 +23,9 @@ signal magazine_change(current_magazine: int)
 
 #Input Manager
 @warning_ignore("unused_signal")
-signal k_action1()
+signal k_action1(cooldown: float)
 @warning_ignore("unused_signal")
-signal k_action2()
+signal k_action2(cooldown: float)
 @warning_ignore("unused_signal")
 signal k_jump()
 @warning_ignore("unused_signal")

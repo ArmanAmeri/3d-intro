@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://oi8sct5g8fi5"]
+[gd_scene load_steps=18 format=3 uid="uid://oi8sct5g8fi5"]
 
 [ext_resource type="Script" path="res://Scripts/game_ui.gd" id="1_syeqx"]
 [ext_resource type="Texture2D" uid="uid://codd6mtrjkk5p" path="res://Assets/Crosshair.png" id="2_c4x62"]
@@ -14,9 +14,15 @@
 [ext_resource type="Script" path="res://Scripts/class_ui.gd" id="10_nl5pj"]
 [ext_resource type="Script" path="res://Scripts/console.gd" id="13_jh5ge"]
 [ext_resource type="Script" path="res://Scripts/dot_reticle.gd" id="14_5erbw"]
+[ext_resource type="Script" path="res://Scripts/temp_cooldown_visuals.gd" id="15_5ivql"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4w881"]
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_y673a"]
+font_size = 48
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_syeqx")
@@ -248,3 +254,57 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("14_5erbw")
+
+[node name="TempCooldownVisuals" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1372.0
+offset_top = 16.0
+offset_right = 1903.0
+offset_bottom = 547.0
+script = ExtResource("15_5ivql")
+
+[node name="Action1Label" type="Label" parent="TempCooldownVisuals"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -157.0
+offset_bottom = 85.0
+grow_horizontal = 0
+text = "Action1"
+label_settings = SubResource("LabelSettings_y673a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="TempCooldownVisuals/Action1Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false
+
+[node name="Action2Label" type="Label" parent="TempCooldownVisuals"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -175.0
+offset_top = 100.0
+offset_bottom = 185.0
+grow_horizontal = 0
+text = "Action2"
+label_settings = SubResource("LabelSettings_y673a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="TempCooldownVisuals/Action2Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false

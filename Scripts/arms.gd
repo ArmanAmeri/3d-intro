@@ -53,9 +53,11 @@ func run_reusable() -> void:
 		if not H_item.skilldata.on_cooldown:
 			#anim.play("Armature|Shoot")
 			H_item.action1()
+			Signalbus.k_action1.emit(H_item.skill_cooldown)
 	elif Input.is_action_just_pressed("action2") and InputManager.inputs_enabled:
 		if anim.is_playing():
 			return
 		if not H_item.skilldata.on_cooldown:
 			#anim.play("Armature|Shoot")
 			H_item.action2()
+			Signalbus.k_action2.emit(H_item.skill_cooldown)
