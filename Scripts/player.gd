@@ -39,6 +39,8 @@ var hp: int
 # Add a flag to track if player is already dead
 var is_dead: bool = false
 
+var input_locked: bool = false
+var input_dir = Vector2.ZERO
 
 func _ready() -> void:
 	continuous_laser.visible = false
@@ -46,22 +48,28 @@ func _ready() -> void:
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	speed = WALK_SPEED
+
 	
 	arms.equip(glock19)
 	
 	Signalbus.k_jump.connect(on_jump)
-	Signalbus.k_sprint.connect(on_sprint)
-
 
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta * GRAV_AMP
-	
 
-	# Get the input direction and handle the movement/deceleration.
-	var input_dir = Input.get_vector("a", "d", "w", "s")
+	# Handle Sprint.
+	if Input.is_action_pressed("sprint") and InputManager.inputs_enabled:
+		speed = SPRINT_SPEED#aæøfdejoæeiafvuhpdjoækcmanvjdsb hlajfewdoækmLAVBFJSLIHØAJDÆOKPSACLMDKV-NJBKUHIOFJP
+	else:
+		speed = WALK_SPEED
+
+	if InputManager.inputs_enabled:
+		input_dir = Input.get_vector("a", "d", "w", "s")
+	else:
+		input_dir = Vector2.ZERO
 	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if is_on_floor():
 		if direction:
@@ -83,7 +91,6 @@ func _physics_process(delta):
 	arms.transform.origin = _headbob(a_bob, "arms")
 	
 	#Mouse Lock
-	
 	
 	if Input.is_action_just_pressed("skill1"):
 		var projectile = dismantle.instantiate()
@@ -126,8 +133,11 @@ func die() -> void:
 	print("Player died!")
 	
 	# Disable player controls
-	set_process_input(false)
+	#set_process_input(false)
 	set_physics_process(false)
+	
+	InputManager.inputs_enabled = false
+	InputManager.can_click_to_game = false
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
@@ -161,10 +171,3 @@ func on_jump() -> void:
 	# Handle Jump.
 	if is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-func on_sprint() -> void:
-	# Handle Sprint.
-	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED#aæøfdejoæeiafvuhpdjoækcmanvjdsb hlajfewdoækmLAVBFJSLIHØAJDÆOKPSACLMDKV-NJBKUHIOFJP
-	else:
-		speed = WALK_SPEED

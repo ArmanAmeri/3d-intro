@@ -30,7 +30,7 @@ func equip(item) -> void:
 
 func run_limited() -> void:
 	if H_item:
-		if Input.is_action_pressed("action1"):
+		if Input.is_action_pressed("action1") and InputManager.inputs_enabled:
 			if anim.is_playing():
 				return
 			if H_item.skilldata.resource != 0:
@@ -38,7 +38,7 @@ func run_limited() -> void:
 				H_item.shoot()
 			else:
 				H_item.no_resource()
-		if Input.is_action_pressed("reload"):
+		if Input.is_action_pressed("reload") and InputManager.inputs_enabled:
 			if anim.is_playing():
 				return
 			anim.play("Armature|Reload")

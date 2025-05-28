@@ -38,7 +38,6 @@ radius = 0.598522
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 8
 collision_mask = 31
-motion_mode = 1
 script = ExtResource("1_gnd67")
 
 [node name="feet" type="CollisionShape3D" parent="."]

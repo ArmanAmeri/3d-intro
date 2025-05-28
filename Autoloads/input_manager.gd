@@ -1,17 +1,20 @@
 extends Node
 
-var inputs_enabled = true
-
+var inputs_enabled: bool = true
+var can_click_to_game: bool = true
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		inputs_enabled = false
 		
-	if Input.is_action_just_pressed("click"):
+	if Input.is_action_just_pressed("click") and can_click_to_game:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		inputs_enabled = true
 	
 	if inputs_enabled:
 		
+	
 		if Input.is_action_pressed("action1"):
 			Signalbus.k_action1.emit()
 		if Input.is_action_pressed("action2"):
