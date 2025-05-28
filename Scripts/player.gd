@@ -6,11 +6,10 @@ signal used_ultimate()
 
 @onready var head = $Head
 @onready var camera = $Head/FirstPersonCamera
-@onready var continuous_laser: Node3D = $Head/FirstPersonCamera/ContinuousLaser
 @onready var arms: Node3D = $Head/FirstPersonCamera/Arms
 
 var glock19 = preload("res://Scenes/GUNZ/glock_19.tscn")
-var dismantle = preload("res://Characters/Sukuna/Attacks/dismantle.tscn")
+var dismantle = preload("res://Characters/Sukuna/Attacks/dismantle_skill.tscn")
 
 var gravity: float = 9.8
 const GRAV_AMP = 1.35
@@ -43,14 +42,13 @@ var input_locked: bool = false
 var input_dir = Vector2.ZERO
 
 func _ready() -> void:
-	continuous_laser.visible = false
 	hp = hp_max
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	speed = WALK_SPEED
 
 	
-	arms.equip(glock19)
+	arms.equip(dismantle)
 	
 	Signalbus.k_jump.connect(on_jump)
 
@@ -93,12 +91,12 @@ func _physics_process(delta):
 	#Mouse Lock
 	
 	if Input.is_action_just_pressed("skill1"):
-		var projectile = dismantle.instantiate()
-		camera.add_child(projectile)
+		#var projectile = dismantle.instantiate()
+		#camera.add_child(projectile)
+		pass
 	
 	if Input.is_action_just_pressed("special"):
 		used_special.emit()
-		continuous_laser.visible = true
 	
 	if Input.is_action_just_pressed("ultimate"):
 		used_ultimate.emit()

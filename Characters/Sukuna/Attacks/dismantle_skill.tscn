@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://c87ds62628eju"]
+[gd_scene load_steps=4 format=3 uid="uid://c87ds62628eju"]
 
 [ext_resource type="Script" path="res://Characters/Sukuna/Attacks/dismantle_skill.gd" id="1_7b8se"]
+[ext_resource type="Script" path="res://Resources/skill_data.gd" id="2_2emjn"]
+
+[sub_resource type="Resource" id="Resource_tshcw"]
+script = ExtResource("2_2emjn")
+is_limited = false
+resource_max = 0
+resource = 0
+resource_empty = false
+is_reusable = true
+reuse_cooldown = 1.0
+on_cooldown = false
+is_autostart = false
+is_oneshot = true
 
 [node name="DismantleSkill" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_7b8se")
+skilldata = SubResource("Resource_tshcw")

@@ -47,4 +47,15 @@ func run_limited() -> void:
 		pass
 
 func run_reusable() -> void:
-	pass
+	if Input.is_action_pressed("action1") and InputManager.inputs_enabled:
+		if anim.is_playing():
+			return
+		if not H_item.skilldata.on_cooldown:
+			#anim.play("Armature|Shoot")
+			H_item.action1()
+	elif Input.is_action_just_pressed("action2") and InputManager.inputs_enabled:
+		if anim.is_playing():
+			return
+		if not H_item.skilldata.on_cooldown:
+			#anim.play("Armature|Shoot")
+			H_item.action2()

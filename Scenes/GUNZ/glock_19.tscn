@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=4 uid="uid://b4bepe0ixe4dn"]
 
-[ext_resource type="PackedScene" path="res://Scenes/muzzle_flash.tscn" id="1_1tcpn"]
+[ext_resource type="PackedScene" uid="uid://cjrbre86epvys" path="res://Scenes/muzzle_flash.tscn" id="1_1tcpn"]
 [ext_resource type="Script" path="res://Scripts/Gunz/glock_19.gd" id="1_1xriu"]
 [ext_resource type="Script" path="res://Resources/skill_data.gd" id="2_aesm6"]
 [ext_resource type="AudioStream" uid="uid://6hf60jmtvo8b" path="res://Assets/Gunz/weapons_asset_pack/sounds/cc0-385811__morganpurkis__single-pistol-gunshot-3.wav" id="2_sj32l"]
@@ -16,6 +16,9 @@ resource = 0
 resource_empty = false
 is_reusable = false
 reuse_cooldown = 1.0
+on_cooldown = false
+is_autostart = false
+is_oneshot = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1xl4"]
 resource_name = "Frame"

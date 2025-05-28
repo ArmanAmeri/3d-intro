@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dah10fs4pegkv"]
 
 [ext_resource type="Script" path="res://Scripts/projectile_basic.gd" id="1_8so0n"]
-[ext_resource type="PackedScene" path="res://Scenes/bullet_tracer.tscn" id="2_corxs"]
+[ext_resource type="PackedScene" uid="uid://c1hr7r6oml2y4" path="res://Scenes/bullet_tracer.tscn" id="2_corxs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4q8ho"]
 metallic = 1.0

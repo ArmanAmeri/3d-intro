@@ -21,9 +21,11 @@ var can_fire: bool = true
 
 func _ready() -> void:
 	player.connect("used_special", on_laser_fired)
+	visible = false
 
 func on_laser_fired():
 	if can_fire:
+		visible = true
 		can_fire = false
 		animp.play("fire_laser")
 		suck_particle_effect.emitting = true
