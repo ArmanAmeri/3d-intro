@@ -1,17 +1,20 @@
 extends Control
-class_name Health 
+class_name HealthBar
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var damage_bar: TextureProgressBar = $DamageBar
 @onready var health_bar: TextureProgressBar = $HealthBar
 
-@export var min_value : int
-@export var max_value: int
+var min_value : int
+var max_value: int
 var current_value: int
 
 
 func _ready() -> void:
 	Signalbus.player_hurt.connect(on_player_hurt)
+	
+	min_value = 0
+	max_value = player.hp_max
 	
 	current_value = max_value
 	init_bar_values(health_bar)

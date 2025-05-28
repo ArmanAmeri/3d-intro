@@ -2,18 +2,28 @@ extends Node
 
 var inputs_enabled: bool = true
 var can_click_to_game: bool = true
+var can_escape: bool = true
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") and can_escape:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		inputs_enabled = false
-		
-	if Input.is_action_just_pressed("click") and can_click_to_game:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		inputs_enabled = true
+		Signalbus.escape.emit()
+
+	if can_click_to_game:
+		if Input.is_action_just_pressed("click"):
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			inputs_enabled = true
+	
+		if Input.is_action_just_pressed("toggle_console"):
+			Signalbus.k_toggleconsole.emit()
+		if Input.is_action_pressed("debugpanel"):
+			Signalbus.k_debugpanel.emit()
+		if Input.is_action_pressed("click"):
+			Signalbus.k_click.emit()
+
 	
 	if inputs_enabled:
-		
 	
 		if Input.is_action_pressed("action1"):
 			Signalbus.k_action1.emit()
@@ -49,10 +59,3 @@ func _process(_delta: float) -> void:
 			Signalbus.k_skill3.emit()
 		if Input.is_action_pressed("skill4"):
 			Signalbus.k_skill4.emit()
-	else:
-		if Input.is_action_pressed("toggle_console"):
-			Signalbus.k_toggleconsole.emit()
-		if Input.is_action_pressed("debugpanel"):
-			Signalbus.k_debugpanel.emit()
-		if Input.is_action_pressed("click"):
-			Signalbus.k_click.emit()

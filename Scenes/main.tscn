@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dihy6wuibgplv"]
 
 [ext_resource type="PackedScene" uid="uid://buce3731mh8jo" path="res://Scenes/player.tscn" id="1_al1kw"]
-[ext_resource type="PackedScene" uid="uid://diiu8sy85tg4f" path="res://Scenes/anemy.tscn" id="2_06aav"]
+[ext_resource type="PackedScene" uid="uid://diiu8sy85tg4f" path="res://Scenes/Entity/anemy.tscn" id="2_06aav"]
 [ext_resource type="PackedScene" uid="uid://oi8sct5g8fi5" path="res://Scenes/game_ui.tscn" id="3_be6b2"]
 [ext_resource type="PackedScene" uid="uid://bequanpoqt731" path="res://Scenes/spawner.tscn" id="4_m8c50"]
 [ext_resource type="PackedScene" uid="uid://bnee2dpncngq5" path="res://Scenes/world.tscn" id="5_fqf3k"]

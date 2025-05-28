@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://oi8sct5g8fi5"]
+[gd_scene load_steps=21 format=3 uid="uid://oi8sct5g8fi5"]
 
 [ext_resource type="Script" path="res://Scripts/game_ui.gd" id="1_syeqx"]
 [ext_resource type="Texture2D" uid="uid://codd6mtrjkk5p" path="res://Assets/Crosshair.png" id="2_c4x62"]
@@ -9,9 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://3xonkqrnyxh8" path="res://Assets/UI/HealthBar1.png" id="6_drub2"]
 [ext_resource type="Texture2D" uid="uid://d21dlt45nxn5j" path="res://Assets/UI/HealthBar3.png" id="6_qm7rb"]
 [ext_resource type="Texture2D" uid="uid://cp564gxby6wew" path="res://Assets/UI/HealthBar4.png" id="7_iso83"]
+[ext_resource type="Texture2D" uid="uid://chq1lq4gc5j24" path="res://Assets/UI/HealthBar5.png" id="8_3kyfe"]
+[ext_resource type="Script" path="res://Scripts/stamina.gd" id="10_01b5e"]
 [ext_resource type="Texture2D" uid="uid://bbcidhqd7m5d7" path="res://Assets/UI/Ammo.png" id="10_74xfx"]
 [ext_resource type="Script" path="res://Scripts/ui_magazine.gd" id="10_eivjn"]
 [ext_resource type="Script" path="res://Scripts/class_ui.gd" id="10_nl5pj"]
+[ext_resource type="Texture2D" uid="uid://qsaav2kdd8ki" path="res://Assets/UI/HealthBar7.png" id="10_udqdf"]
+[ext_resource type="Texture2D" uid="uid://bpj5tq0ogp87p" path="res://Assets/UI/HealthBar8.png" id="11_p20fm"]
+[ext_resource type="Texture2D" uid="uid://ds0yddc24jc32" path="res://Assets/UI/HealthBar6.png" id="12_plxno"]
 [ext_resource type="Script" path="res://Scripts/console.gd" id="13_jh5ge"]
 [ext_resource type="Script" path="res://Scripts/dot_reticle.gd" id="14_5erbw"]
 
@@ -78,7 +83,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_oyyab")
-max_value = 100
 
 [node name="DamageBar" type="TextureProgressBar" parent="PlayerVitals/Health"]
 layout_mode = 1
@@ -119,6 +123,52 @@ radial_initial_angle = 270.0
 radial_fill_degrees = 180.0
 radial_center_offset = Vector2(0, 128)
 texture_progress = ExtResource("6_drub2")
+
+[node name="Stamina" type="Control" parent="PlayerVitals"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_01b5e")
+
+[node name="DrainBar" type="TextureProgressBar" parent="PlayerVitals/Stamina"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -296.0
+offset_right = 108.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+fill_mode = 4
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
+radial_center_offset = Vector2(0, 128)
+texture_under = ExtResource("10_udqdf")
+texture_over = ExtResource("8_3kyfe")
+texture_progress = ExtResource("11_p20fm")
+
+[node name="StaminaBar" type="TextureProgressBar" parent="PlayerVitals/Stamina"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -296.0
+offset_right = 108.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+fill_mode = 4
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
+radial_center_offset = Vector2(0, 128)
+texture_progress = ExtResource("12_plxno")
 
 [node name="ClassUI" type="Control" parent="."]
 layout_mode = 3

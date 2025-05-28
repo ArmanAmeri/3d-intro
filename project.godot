@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="3D Intro"
-run/main_scene="res://Scenes/main.tscn"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PlayerInfo="*res://Autoloads/player_info.gd"
 Signalbus="*res://Autoloads/signalbus.gd"
 InputManager="*res://Autoloads/input_manager.gd"
+GameInfo="*res://Autoloads/game_info.gd"
 
 [display]
 

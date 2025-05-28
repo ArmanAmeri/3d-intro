@@ -1,12 +1,10 @@
 extends CharacterBody3D
 class_name Player
 
-signal used_special()
 signal used_ultimate()
 
 @onready var head = $Head
 @onready var camera = $Head/FirstPersonCamera
-@onready var continuous_laser: Node3D = $Head/FirstPersonCamera/ContinuousLaser
 @onready var arms: Node3D = $Head/FirstPersonCamera/Arms
 
 var glock19 = preload("res://Scenes/GUNZ/glock_19.tscn")
@@ -33,8 +31,15 @@ var a_bob = 0.0
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
 
+#HEALTH
 var hp_max: int = 100
 var hp: int
+
+#STAMINA
+var stam_max: float = 100
+var stam: float
+var stam_regen: float = 10
+var stam_dep: float = 20
 
 # Add a flag to track if player is already dead
 var is_dead: bool = false
@@ -43,8 +48,8 @@ var input_locked: bool = false
 var input_dir = Vector2.ZERO
 
 func _ready() -> void:
-	continuous_laser.visible = false
 	hp = hp_max
+	stam = stam_max
 	is_dead = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	speed = WALK_SPEED
@@ -61,10 +66,18 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta * GRAV_AMP
 
 	# Handle Sprint.
-	if Input.is_action_pressed("sprint") and InputManager.inputs_enabled:
-		speed = SPRINT_SPEED#aæøfdejoæeiafvuhpdjoækcmanvjdsb hlajfewdoækmLAVBFJSLIHØAJDÆOKPSACLMDKV-NJBKUHIOFJP
+	if Input.is_action_pressed("sprint") and InputManager.inputs_enabled and stam > 0:
+		speed = SPRINT_SPEED
+		if input_dir != Vector2.ZERO:
+			stam -= stam_dep * delta
+			stam = max(stam, 0)
+			Signalbus.player_stam_change.emit()
 	else:
 		speed = WALK_SPEED
+		if stam < stam_max:
+			stam += stam_regen * delta
+			stam = min(stam, stam_max)
+			Signalbus.player_stam_change.emit()
 
 	if InputManager.inputs_enabled:
 		input_dir = Input.get_vector("a", "d", "w", "s")
@@ -96,9 +109,7 @@ func _physics_process(delta):
 		var projectile = dismantle.instantiate()
 		camera.add_child(projectile)
 	
-	if Input.is_action_just_pressed("special"):
-		used_special.emit()
-		continuous_laser.visible = true
+
 	
 	if Input.is_action_just_pressed("ultimate"):
 		used_ultimate.emit()

@@ -39,4 +39,3 @@ func _on_timer_timeout() -> void:
 	add_child(instance)
 
 	current_spawns += 1
-	Signalbus.anemy_created.emit(current_spawns)
