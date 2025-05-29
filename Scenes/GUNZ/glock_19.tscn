@@ -334,7 +334,6 @@ bind/40/bone = -1
 bind/40/pose = Transform3D(0.00981049, -0.000903239, 0.00318052, 7.45012e-05, -0.00989591, -0.00304015, 0.00330545, 0.00290383, -0.00937118, 0.000194933, -0.000271794, -4.92005e-05)
 
 [node name="Glock19" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0179289, 0)
 script = ExtResource("1_1xriu")
 skilldata = SubResource("Resource_5ipgo")
 

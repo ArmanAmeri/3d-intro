@@ -52,4 +52,11 @@ func run_limited() -> void:
 		pass
 
 func run_reusable() -> void:
-	pass
+	if H_item:
+		if Input.is_action_pressed("action1") and InputManager.inputs_enabled:
+			if H_item.skilldata:
+				H_item.action1()
+			else:
+				H_item.on_cooldown()
+	else:
+		pass

@@ -17,6 +17,9 @@ var ult_domain_expansion = preload("res://Scenes/malevolent_shrine.tscn")
 var glock = preload("res://Scenes/GUNZ/glock_19.tscn")
 
 
+#Fire Mage
+var firebolt = preload("res://Characters/FireMage/skill_fire_bolt.tscn")
+
 #Time lord skills
 #some crazy ass time skills
 
@@ -25,6 +28,8 @@ func _process(_delta: float) -> void:
 		use_sukuna_skillset()
 	if PlayerInfo.current_class == PlayerInfo.PlayerClasses.AVERAGE_AMERICAN:
 		use_averageamerican_skillset()
+	if PlayerInfo.current_class == PlayerInfo.PlayerClasses.FIREMAGE:
+		use_firemage_skillset()
 
 
 func use_sukuna_skillset() -> void:
@@ -50,3 +55,8 @@ func use_averageamerican_skillset() -> void:
 	# Normal Skills
 	if Input.is_action_just_pressed("skill1") and InputManager.inputs_enabled:
 		arms.equip(glock)
+
+func use_firemage_skillset() -> void:
+	# Normal Skills
+	if Input.is_action_just_pressed("skill1") and InputManager.inputs_enabled:
+		arms.equip(firebolt)

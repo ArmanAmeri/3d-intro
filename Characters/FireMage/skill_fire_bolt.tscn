@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dubt4masr0uvg"]
+
+[ext_resource type="Script" path="res://Characters/FireMage/skill_fire_bolt.gd" id="1_bo5gc"]
+[ext_resource type="Script" path="res://Resources/skill_data.gd" id="2_3g2xw"]
+
+[sub_resource type="Resource" id="Resource_6yvtc"]
+script = ExtResource("2_3g2xw")
+is_limited = false
+resource_max = 0
+resource = 0
+resource_empty = false
+is_reusable = true
+reuse_cooldown = 1.0
+
+[node name="Skill_FireBolt" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_bo5gc")
+skilldata = SubResource("Resource_6yvtc")
+
+[node name="ShootPoint" type="Marker3D" parent="."]

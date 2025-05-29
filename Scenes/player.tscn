@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://buce3731mh8jo"]
+[gd_scene load_steps=10 format=3 uid="uid://buce3731mh8jo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jihlc"]
 [ext_resource type="Script" path="res://Scripts/first_person_camera.gd" id="2_fypxa"]
 [ext_resource type="PackedScene" uid="uid://unuxevls1pct" path="res://Scenes/armsv2.tscn" id="4_342bu"]
-[ext_resource type="PackedScene" uid="uid://c6kl6voo8qeon" path="res://Scenes/malevolent_shrine.tscn" id="5_38sfw"]
 [ext_resource type="Script" path="res://Scenes/skill_manager.gd" id="6_6up74"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu7ey"]
@@ -58,8 +57,6 @@ skeleton = NodePath("../..")
 [node name="Body" type="MeshInstance3D" parent="Bodyold"]
 mesh = SubResource("CapsuleMesh_pw36s")
 skeleton = NodePath("../..")
-
-[node name="MalevolentShrine" parent="." instance=ExtResource("5_38sfw")]
 
 [node name="SkillManager" type="Node" parent="."]
 script = ExtResource("6_6up74")

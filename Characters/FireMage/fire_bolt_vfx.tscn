@@ -1,0 +1,76 @@
+[gd_scene load_steps=15 format=3 uid="uid://demxgj8vpd2br"]
+
+[ext_resource type="Script" path="res://Characters/FireMage/attractorbasepos.gd" id="1_4jv2l"]
+
+[sub_resource type="Curve" id="Curve_sd3ht"]
+_data = [Vector2(0, 0.0801347), 0.0, 0.0, 0, 0, Vector2(0.571181, 0.725754), 0.0, 0.0, 0, 0, Vector2(1, 0.0172868), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hf46w"]
+curve = SubResource("Curve_sd3ht")
+
+[sub_resource type="Gradient" id="Gradient_ctsmg"]
+offsets = PackedFloat32Array(0.146718, 0.656371, 0.841699, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.368627, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5s2s5"]
+gradient = SubResource("Gradient_ctsmg")
+
+[sub_resource type="Curve" id="Curve_7gcu0"]
+_data = [Vector2(0, 0.379139), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1deyf"]
+curve = SubResource("Curve_7gcu0")
+
+[sub_resource type="Curve" id="Curve_bgs7o"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gh03g"]
+curve = SubResource("Curve_bgs7o")
+
+[sub_resource type="Curve" id="Curve_20qlx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.624817), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r7ae1"]
+curve = SubResource("Curve_20qlx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_luwxu"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 0, 0)
+radial_velocity_min = 0.299978
+radial_velocity_max = 0.499978
+radial_velocity_curve = SubResource("CurveTexture_gh03g")
+gravity = Vector3(0, 9.8, 0)
+scale_min = 0.8
+scale_curve = SubResource("CurveTexture_r7ae1")
+color_ramp = SubResource("GradientTexture1D_5s2s5")
+alpha_curve = SubResource("CurveTexture_hf46w")
+emission_curve = SubResource("CurveTexture_1deyf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p32d2"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_7gg3r"]
+material = SubResource("StandardMaterial3D_p32d2")
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="FireBoltVFX" type="GPUParticles3D"]
+amount = 200
+lifetime = 0.35
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_luwxu")
+draw_pass_1 = SubResource("BoxMesh_7gg3r")
+
+[node name="Attractorbasepos" type="Marker3D" parent="."]
+script = ExtResource("1_4jv2l")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="Attractorbasepos"]
+top_level = true
+attenuation = 1e-05
+radius = 0.6
